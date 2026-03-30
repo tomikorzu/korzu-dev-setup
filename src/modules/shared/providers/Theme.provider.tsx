@@ -7,8 +7,8 @@ import theme from "@/theme/theme";
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
   return (
-    <MUIThemeProvider theme={theme} >
-      <CssBaseline />
+    <MUIThemeProvider theme={theme}>
+      <CssBaseline enableColorScheme />
       {children}
     </MUIThemeProvider>
   );

@@ -1,16 +1,18 @@
 import type { Components, Theme } from "@mui/material/styles";
-import { tokens } from "../tokens";
+import { sharedTokens } from "../tokens/tokens.shared";
 
 export const MuiCardOverrides: Components<Theme>["MuiCard"] = {
   styleOverrides: {
-    root: {
-      borderRadius: tokens.radius.card,
-      boxShadow: tokens.shadow.card,
-      transition: tokens.transition.base,
+    root: ({ theme }) => ({
+      borderRadius: sharedTokens.radius.card,
+      boxShadow: sharedTokens.shadow.card,
+      transition: sharedTokens.transition.base,
+      backgroundColor: theme.palette.surface.container.low,
+      borderColor: theme.palette.border.neutral.tertiary,
       "&:hover": {
         transform: "translateY(-4px)",
-        boxShadow: tokens.shadow.cardHover,
+        boxShadow: sharedTokens.shadow.cardHover,
       },
-    },
+    }),
   },
 };

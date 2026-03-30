@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 import AppProvider from "@/modules/shared/providers/App.provider";
 
 export const metadata: Metadata = {
@@ -12,8 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
+        <InitColorSchemeScript attribute="data" />
         <AppProvider>{children}</AppProvider>
       </body>
     </html>

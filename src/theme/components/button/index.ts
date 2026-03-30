@@ -1,7 +1,10 @@
 import type { Components, Theme } from "@mui/material/styles";
 import { primitives } from "../../primitives";
-import { tokens } from "../../tokens";
-import { createAllButtonStyles, createNavButtonStyles } from "./helpers";
+import {
+  buildButtonStyleOverrides,
+  createDestructiveButtonStyles,
+  createNavButtonStyles,
+} from "./helpers";
 
 export const MuiButtonOverrides: Components<Theme>["MuiButton"] = {
   defaultProps: {
@@ -15,27 +18,33 @@ export const MuiButtonOverrides: Components<Theme>["MuiButton"] = {
   variants: [
     {
       props: { variant: "nav" },
-      style: createNavButtonStyles(),
+      style: ({ theme }) => createNavButtonStyles(theme),
+    },
+    {
+      props: { variant: "destructive" },
+      style: ({ theme }) =>
+        createDestructiveButtonStyles(theme, {
+          withShadow: true,
+          withTransform: true,
+        }),
     },
   ],
   styleOverrides: {
-    root: {
-      borderRadius: tokens.radius.button,
+    root: ({ theme }) => ({
+      borderRadius: theme.palette.buttons.radius.md,
       padding: `${primitives.spacing[2]}px ${primitives.spacing[6]}px`,
       fontSize: primitives.fontSize.sm,
       fontWeight: primitives.fontWeight.semibold,
-      transition: tokens.transition.base,
+      transition: "all 300ms ease-in-out",
       textTransform: "none",
-    },
+    }),
 
-    // Genera automáticamente todos los estilos de variantes y colores
-    ...createAllButtonStyles({
+    ...buildButtonStyleOverrides({
       withShadow: true,
       withTransform: true,
       borderWidth: primitives.borderWidth[2],
     }),
 
-    // Sizes
     sizeLarge: {
       padding: `${primitives.spacing[3]}px ${primitives.spacing[8]}px`,
       fontSize: primitives.fontSize.base,

@@ -1,62 +1,41 @@
 /**
  * Button Style Helpers
- * 
+ *
  * Funciones helper para generar estilos de botones automáticamente
- * desde los tokens, evitando repetición de código.
+ * desde theme.palette.buttons, evitando repetición de código.
  */
 
-import type { CSSObject } from "@mui/material/styles";
-import { primitives } from "../../primitives";
-import { tokens } from "../../tokens";
+import type { Theme, CSSObject } from "@mui/material/styles";
+import { sharedTokens } from "../../tokens/tokens.shared";
 
-type ButtonVariant = "contained" | "outlined" | "text" | "nav";
-type ButtonColor = "primary" | "secondary" | "success" | "error";
-
-interface ButtonTokens {
-  surface: {
-    enabled: string;
-    hovered: string;
-    disabled: string;
-  };
-  text: {
-    enabled: string;
-    hovered: string;
-    disabled: string;
-  };
-  border: {
-    enabled: string;
-    hovered: string;
-    disabled: string;
-  };
+interface ButtonStyleOptions {
+  withShadow?: boolean;
+  withTransform?: boolean;
+  borderWidth?: number;
 }
 
 /**
  * Genera estilos para un botón contained
  */
 export function createContainedButtonStyles(
-  colorTokens: ButtonTokens,
-  options?: {
-    withShadow?: boolean;
-    withTransform?: boolean;
-  }
+  theme: Theme,
+  options?: ButtonStyleOptions,
 ): CSSObject {
   const { withShadow = true, withTransform = true } = options || {};
+  const b = theme.palette.buttons;
 
   return {
-    backgroundColor: colorTokens.surface.enabled,
-    color: colorTokens.text.enabled,
-    borderColor: colorTokens.border.enabled,
-    ...(withShadow && { boxShadow: tokens.shadow.button }),
+    backgroundColor: b.surface.contained.enabled,
+    color: theme.palette.text.primaryInverse,
+    ...(withShadow && { boxShadow: sharedTokens.shadow.button }),
     "&:hover": {
-      backgroundColor: colorTokens.surface.hovered,
-      color: colorTokens.text.hovered,
-      borderColor: colorTokens.border.hovered,
-      ...(withShadow && { boxShadow: tokens.shadow.dropdown }),
+      backgroundColor: b.surface.contained.hovered,
+      color: theme.palette.text.primaryInverse,
+      ...(withShadow && { boxShadow: sharedTokens.shadow.dropdown }),
     },
-    "&:disabled": {
-      backgroundColor: colorTokens.surface.disabled,
-      color: colorTokens.text.disabled,
-      borderColor: colorTokens.border.disabled,
+    "&:disabled, &.Mui-disabled": {
+      backgroundColor: theme.palette.surface.disabled,
+      color: theme.palette.text.disabled,
     },
     ...(withTransform && {
       "&:active": {
@@ -70,28 +49,27 @@ export function createContainedButtonStyles(
  * Genera estilos para un botón outlined
  */
 export function createOutlinedButtonStyles(
-  colorTokens: ButtonTokens,
-  options?: {
-    borderWidth?: number;
-  }
+  theme: Theme,
+  options?: ButtonStyleOptions,
 ): CSSObject {
-  const { borderWidth = primitives.borderWidth[2] } = options || {};
+  const { borderWidth = 2 } = options || {};
+  const b = theme.palette.buttons;
 
   return {
-    backgroundColor: colorTokens.surface.enabled,
-    color: colorTokens.text.enabled,
-    borderColor: colorTokens.border.enabled,
+    backgroundColor: b.surface.outlined.enabled,
+    color: b.text.outlined.enabled,
+    borderColor: b.border.outlined.enabled,
     borderWidth,
     "&:hover": {
-      backgroundColor: colorTokens.surface.hovered,
-      color: colorTokens.text.hovered,
-      borderColor: colorTokens.border.hovered,
+      backgroundColor: b.surface.outlined.hovered,
+      color: b.text.outlined.hovered,
+      borderColor: b.border.outlined.hovered,
       borderWidth,
     },
-    "&:disabled": {
-      backgroundColor: colorTokens.surface.disabled,
-      color: colorTokens.text.disabled,
-      borderColor: colorTokens.border.disabled,
+    "&:disabled, &.Mui-disabled": {
+      backgroundColor: "transparent",
+      color: theme.palette.text.disabled,
+      borderColor: theme.palette.border.disabled,
     },
   };
 }
@@ -99,126 +77,90 @@ export function createOutlinedButtonStyles(
 /**
  * Genera estilos para un botón text
  */
-export function createTextButtonStyles(colorTokens: ButtonTokens): CSSObject {
+export function createTextButtonStyles(theme: Theme): CSSObject {
+  const b = theme.palette.buttons;
+
   return {
-    backgroundColor: colorTokens.surface.enabled,
-    color: colorTokens.text.enabled,
+    backgroundColor: "transparent",
+    color: theme.palette.text.primary,
     "&:hover": {
-      backgroundColor: colorTokens.surface.hovered,
-      color: colorTokens.text.hovered,
+      backgroundColor: b.surface.text.hovered,
+      color: theme.palette.text.primary,
     },
-    "&:disabled": {
-      backgroundColor: colorTokens.surface.disabled,
-      color: colorTokens.text.disabled,
+    "&:disabled, &.Mui-disabled": {
+      backgroundColor: "transparent",
+      color: theme.palette.text.disabled,
     },
   };
 }
 
 /**
- * Genera estilos para un botón de navegación
- * Usa los tokens de navigation en lugar de buttons
+ * Genera estilos para un botón destructive
  */
-export function createNavButtonStyles(isActive: boolean = false): CSSObject {
+export function createDestructiveButtonStyles(
+  theme: Theme,
+  options?: ButtonStyleOptions,
+): CSSObject {
+  const { withShadow = true, withTransform = true } = options || {};
+  const b = theme.palette.buttons;
+
   return {
-    backgroundColor: isActive
-      ? tokens.navigation.surface.current
-      : "transparent",
-    color: isActive
-      ? tokens.navigation.text.current
-      : tokens.navigation.text.default,
+    backgroundColor: b.surface.destructive.enabled,
+    color: theme.palette.text.primaryInverse,
+    borderColor: b.border.destructive,
+    ...(withShadow && { boxShadow: sharedTokens.shadow.button }),
+    "&:hover": {
+      backgroundColor: b.surface.destructive.hovered,
+      color: theme.palette.text.primaryInverse,
+      ...(withShadow && { boxShadow: sharedTokens.shadow.dropdown }),
+    },
+    "&:disabled, &.Mui-disabled": {
+      backgroundColor: theme.palette.surface.disabled,
+      color: theme.palette.text.disabled,
+    },
+    ...(withTransform && {
+      "&:active": {
+        transform: "scale(0.98)",
+      },
+    }),
+  };
+}
+
+/**
+ * Genera estilos para un botón de navegación
+ */
+export function createNavButtonStyles(theme: Theme): CSSObject {
+  const nav = theme.palette.navigation;
+
+  return {
+    backgroundColor: "transparent",
+    color: nav.text.default,
     fontWeight: 600,
     "&:hover": {
-      backgroundColor: tokens.navigation.surface.hovered,
+      backgroundColor: nav.surface.hovered,
     },
-    "&:disabled": {
+    "&.active": {
+      backgroundColor: nav.surface.current,
+      color: nav.text.current,
+    },
+    "&:disabled, &.Mui-disabled": {
       backgroundColor: "transparent",
-      color: tokens.text.disabled,
+      color: theme.palette.text.disabled,
       opacity: 0.6,
     },
   };
 }
 
 /**
- * Obtiene los tokens de color para una variante y color específicos
+ * Factory que genera todos los styleOverrides de botones
+ * para usar con spread en el MuiButton override.
  */
-export function getButtonTokens(
-  variant: Exclude<ButtonVariant, "nav">,
-  color: ButtonColor
-): ButtonTokens {
-  return tokens.buttons[variant][color];
-}
-
-/**
- * Genera estilos para cualquier combinación de variante y color
- */
-export function createButtonStyles(
-  variant: Exclude<ButtonVariant, "nav">,
-  color: ButtonColor,
-  options?: {
-    withShadow?: boolean;
-    withTransform?: boolean;
-    borderWidth?: number;
-  }
-): CSSObject {
-  const colorTokens = getButtonTokens(variant, color);
-
-  switch (variant) {
-    case "contained":
-      return createContainedButtonStyles(colorTokens, {
-        withShadow: options?.withShadow,
-        withTransform: options?.withTransform,
-      });
-    case "outlined":
-      return createOutlinedButtonStyles(colorTokens, {
-        borderWidth: options?.borderWidth,
-      });
-    case "text":
-      return createTextButtonStyles(colorTokens);
-    default:
-      return {};
-  }
-}
-
-/**
- * Genera todos los estilos para una variante específica
- * (todas las combinaciones de colores)
- */
-export function createVariantStyles(
-  variant: Exclude<ButtonVariant, "nav">,
-  colors: ButtonColor[] = ["primary", "secondary", "success", "error"],
-  options?: {
-    withShadow?: boolean;
-    withTransform?: boolean;
-    borderWidth?: number;
-  }
-): Record<string, CSSObject> {
-  const styles: Record<string, CSSObject> = {};
-
-  colors.forEach((color) => {
-    const key = `${variant}${color.charAt(0).toUpperCase()}${color.slice(1)}`;
-    styles[key] = createButtonStyles(variant, color, options);
-  });
-
-  return styles;
-}
-
-/**
- * Genera todos los estilos de botones (todas las variantes y colores)
- */
-export function createAllButtonStyles(
-  options?: {
-    withShadow?: boolean;
-    withTransform?: boolean;
-    borderWidth?: number;
-  }
-): Record<string, CSSObject> {
-  const variants: Exclude<ButtonVariant, "nav">[] = ["contained", "outlined", "text"];
-  const colors: ButtonColor[] = ["primary", "secondary", "success", "error"];
-
-  return variants.reduce((acc, variant) => {
-    return {
-      ...acc,
-      ...createVariantStyles(variant, colors, options),
-    };
-  }, {});
+export function buildButtonStyleOverrides(options?: ButtonStyleOptions) {
+  return {
+    contained: ({ theme }: { theme: Theme }) =>
+      createContainedButtonStyles(theme, options),
+    outlined: ({ theme }: { theme: Theme }) =>
+      createOutlinedButtonStyles(theme, options),
+    text: ({ theme }: { theme: Theme }) => createTextButtonStyles(theme),
+  };
 }
