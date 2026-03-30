@@ -1,8 +1,8 @@
 /**
  * Button Style Helpers
  *
- * Funciones helper para generar estilos de botones automáticamente
- * desde theme.palette.buttons, evitando repetición de código.
+ * Helper functions to generate button styles automatically
+ * from theme.palette.buttons, avoiding code repetition.
  */
 
 import type { Theme, CSSObject } from "@mui/material/styles";
@@ -15,7 +15,7 @@ interface ButtonStyleOptions {
 }
 
 /**
- * Genera estilos para un botón contained
+ * Generate styles for a contained button.
  */
 export function createContainedButtonStyles(
   theme: Theme,
@@ -46,7 +46,7 @@ export function createContainedButtonStyles(
 }
 
 /**
- * Genera estilos para un botón outlined
+ * Generate styles for an outlined button.
  */
 export function createOutlinedButtonStyles(
   theme: Theme,
@@ -75,7 +75,7 @@ export function createOutlinedButtonStyles(
 }
 
 /**
- * Genera estilos para un botón text
+ * Generate styles for a text button.
  */
 export function createTextButtonStyles(theme: Theme): CSSObject {
   const b = theme.palette.buttons;
@@ -95,7 +95,7 @@ export function createTextButtonStyles(theme: Theme): CSSObject {
 }
 
 /**
- * Genera estilos para un botón destructive
+ * Generate styles for a destructive button.
  */
 export function createDestructiveButtonStyles(
   theme: Theme,
@@ -127,7 +127,7 @@ export function createDestructiveButtonStyles(
 }
 
 /**
- * Genera estilos para un botón de navegación
+ * Generate styles for a navigation button.
  */
 export function createNavButtonStyles(theme: Theme): CSSObject {
   const nav = theme.palette.navigation;
@@ -152,8 +152,8 @@ export function createNavButtonStyles(theme: Theme): CSSObject {
 }
 
 /**
- * Factory que genera todos los styleOverrides de botones
- * para usar con spread en el MuiButton override.
+ * Factory that generates all button styleOverrides
+ * for spreading into the MuiButton override.
  */
 export function buildButtonStyleOverrides(options?: ButtonStyleOptions) {
   return {

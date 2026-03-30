@@ -1,7 +1,7 @@
 /**
  * Component Overrides Index
  *
- * Centraliza todas las personalizaciones de componentes MUI.
+ * Centralizes all MUI component customizations.
  */
 
 import type { Components, Theme } from "@mui/material/styles";

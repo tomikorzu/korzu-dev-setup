@@ -1,8 +1,8 @@
 /**
  * Semantic Tokens Type Definition
  *
- * Interface que fuerza paridad estructural entre light y dark
- * en compile time. Estructura definida por propósito semántico.
+ * Interface that enforces structural parity between light and dark
+ * at compile time. Structure defined by semantic purpose.
  */
 
 export interface SemanticTokens {

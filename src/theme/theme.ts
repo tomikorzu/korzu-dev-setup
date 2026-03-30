@@ -8,9 +8,9 @@ import type { SemanticTokens } from "./tokens/tokens.types";
 import "./theme.augments";
 
 /**
- * Construye un MUI PaletteOptions a partir de SemanticTokens.
- * Los tokens custom (surface, buttons, navigation, etc.) se agregan
- * como extensiones del palette — MUI v7 los convierte en CSS vars automáticamente.
+ * Build a MUI PaletteOptions from SemanticTokens.
+ * Custom tokens (surface, buttons, navigation, etc.) are added
+ * as palette extensions — MUI v7 converts them to CSS vars automatically.
  */
 function buildPalette(tokens: SemanticTokens) {
   return {
@@ -55,7 +55,7 @@ function buildPalette(tokens: SemanticTokens) {
     },
     divider: tokens.border.neutral.tertiary,
 
-    // Custom palette extensions — se convierten en CSS vars
+    // Custom palette extensions — become CSS vars automatically
     surface: tokens.surface,
     buttons: tokens.buttons,
     navigation: tokens.navigation,
@@ -73,7 +73,7 @@ const theme = createTheme({
     dark: { palette: buildPalette(darkTokens) },
     light: { palette: buildPalette(lightTokens) },
   },
-  defaultColorScheme: "dark",
+  defaultColorScheme: "light",
 
   typography,
 

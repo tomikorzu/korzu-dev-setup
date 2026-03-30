@@ -1,7 +1,7 @@
 import type { SemanticTokens } from "./tokens/tokens.types";
 
 declare module "@mui/material/styles" {
-  // Augment Palette (para theme.palette access)
+  // Augment Palette (for theme.palette access)
   interface Palette {
     surface: SemanticTokens["surface"];
     buttons: SemanticTokens["buttons"];
@@ -20,7 +20,7 @@ declare module "@mui/material/styles" {
     border?: SemanticTokens["border"];
   }
 
-  // Augment CssVarsPalette (para theme.vars.palette access)
+  // Augment CssVarsPalette (for theme.vars.palette access)
   interface CssVarsPalette {
     surface: SemanticTokens["surface"];
     buttons: SemanticTokens["buttons"];
@@ -30,7 +30,7 @@ declare module "@mui/material/styles" {
     border: SemanticTokens["border"];
   }
 
-  // Extend TypeText para propiedades custom de text tokens
+  // Extend TypeText for custom text token properties
   interface TypeText {
     primaryInverse: string;
     tertiary: string;

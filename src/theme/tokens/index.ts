@@ -1,7 +1,7 @@
 /**
  * Tokens Index
  *
- * Re-exports de todos los tokens del sistema.
+ * Re-exports all tokens from the system.
  */
 
 export { darkTokens } from "./tokens.dark";

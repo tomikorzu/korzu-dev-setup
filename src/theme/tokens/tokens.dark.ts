@@ -1,8 +1,8 @@
 /**
  * Dark Mode Semantic Tokens
  *
- * Todos los colores semánticos para dark mode.
- * Importa de brand.ts — al cambiar brand, todo se actualiza.
+ * All semantic colors for dark mode.
+ * Imports from brand.ts — changing brand updates everything.
  */
 
 import { brand } from "../brand";

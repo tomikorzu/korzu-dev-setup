@@ -1,8 +1,8 @@
 /**
  * Light Mode Semantic Tokens
  *
- * Todos los colores semánticos para light mode.
- * Misma estructura que dark, shades invertidos.
+ * All semantic colors for light mode.
+ * Same structure as dark, inverted shades.
  */
 
 import { brand } from "../brand";
