@@ -2,9 +2,9 @@ import type { Components, Theme } from "@mui/material/styles";
 
 export const MuiCssBaselineOverrides: Components<Theme>["MuiCssBaseline"] = {
   styleOverrides: (theme) => ({
+    // body bg/color handled by MUI's CssBaseline via CSS variables automatically.
+    // Do NOT set backgroundColor or color here — it overrides MUI's CSS var-based values.
     body: {
-      backgroundColor: theme.palette.background.default,
-      color: theme.palette.text.primary,
       WebkitFontSmoothing: "antialiased",
       MozOsxFontSmoothing: "grayscale",
     },

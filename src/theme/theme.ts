@@ -28,11 +28,7 @@ function buildPalette(tokens: SemanticTokens) {
       default: tokens.surface.container.enabled,
       paper: tokens.surface.container.low,
     },
-    text: {
-      primary: tokens.text.primary,
-      secondary: tokens.text.secondary,
-      disabled: tokens.text.disabled,
-    },
+    text: tokens.text,
     success: {
       main: tokens.states.positive.primary,
       light: tokens.surface.positive.primary,

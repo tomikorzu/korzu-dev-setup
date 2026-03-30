@@ -2,7 +2,7 @@
  * Button Style Helpers
  *
  * Helper functions to generate button styles automatically
- * from theme.palette.buttons, avoiding code repetition.
+ * from theme.vars.palette.buttons, avoiding code repetition.
  */
 
 import type { Theme, CSSObject } from "@mui/material/styles";

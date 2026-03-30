@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <InitColorSchemeScript attribute="data" />
+        <InitColorSchemeScript attribute="data" defaultMode="system" />
         <AppProvider>{children}</AppProvider>
       </body>
     </html>

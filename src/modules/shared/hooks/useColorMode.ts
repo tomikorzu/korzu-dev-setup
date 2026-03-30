@@ -3,15 +3,19 @@
 import { useColorScheme } from "@mui/material/styles";
 
 /**
- * Hook para controlar el modo de color (dark/light).
- * Wrapper sobre useColorScheme de MUI que agrega helpers.
+ * Hook to control the color mode (dark/light/system).
+ * Wraps MUI's useColorScheme with convenience helpers.
  *
- * Uso:
- *   const { mode, toggle, isDark } = useColorMode();
+ * On first visit, mode is "system" — resolved via prefers-color-scheme.
+ * After the user picks a mode, their choice is persisted in localStorage.
+ *
+ * @example
+ *   const { mode, resolvedMode, toggle, isDark } = useColorMode();
  */
 export function useColorMode() {
   const { mode, setMode, systemMode } = useColorScheme();
 
+  // The actual applied mode after resolving "system"
   const resolvedMode = mode === "system" ? systemMode : mode;
 
   const toggle = () => {
@@ -19,7 +23,10 @@ export function useColorMode() {
   };
 
   return {
-    mode: resolvedMode,
+    /** Raw mode — can be "light", "dark", or "system" */
+    mode,
+    /** The actual applied mode after resolving "system" to the device preference */
+    resolvedMode,
     setMode,
     toggle,
     isDark: resolvedMode === "dark",
