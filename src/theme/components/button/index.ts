@@ -31,7 +31,7 @@ export const MuiButtonOverrides: Components<Theme>["MuiButton"] = {
   ],
   styleOverrides: {
     root: ({ theme }) => ({
-      borderRadius: theme.palette.buttons.radius.md,
+      borderRadius: theme.vars.palette.buttons.radius.md,
       padding: `${primitives.spacing[2]}px ${primitives.spacing[6]}px`,
       fontSize: primitives.fontSize.sm,
       fontWeight: primitives.fontWeight.semibold,

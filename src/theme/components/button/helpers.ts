@@ -22,20 +22,20 @@ export function createContainedButtonStyles(
   options?: ButtonStyleOptions,
 ): CSSObject {
   const { withShadow = true, withTransform = true } = options || {};
-  const b = theme.palette.buttons;
+  const b = theme.vars.palette.buttons;
 
   return {
     backgroundColor: b.surface.contained.enabled,
-    color: theme.palette.text.primaryInverse,
+    color: theme.vars.palette.text.primaryInverse,
     ...(withShadow && { boxShadow: sharedTokens.shadow.button }),
     "&:hover": {
       backgroundColor: b.surface.contained.hovered,
-      color: theme.palette.text.primaryInverse,
+      color: theme.vars.palette.text.primaryInverse,
       ...(withShadow && { boxShadow: sharedTokens.shadow.dropdown }),
     },
     "&:disabled, &.Mui-disabled": {
-      backgroundColor: theme.palette.surface.disabled,
-      color: theme.palette.text.disabled,
+      backgroundColor: theme.vars.palette.surface.disabled,
+      color: theme.vars.palette.text.disabled,
     },
     ...(withTransform && {
       "&:active": {
@@ -53,7 +53,7 @@ export function createOutlinedButtonStyles(
   options?: ButtonStyleOptions,
 ): CSSObject {
   const { borderWidth = 2 } = options || {};
-  const b = theme.palette.buttons;
+  const b = theme.vars.palette.buttons;
 
   return {
     backgroundColor: b.surface.outlined.enabled,
@@ -68,8 +68,8 @@ export function createOutlinedButtonStyles(
     },
     "&:disabled, &.Mui-disabled": {
       backgroundColor: "transparent",
-      color: theme.palette.text.disabled,
-      borderColor: theme.palette.border.disabled,
+      color: theme.vars.palette.text.disabled,
+      borderColor: theme.vars.palette.border.disabled,
     },
   };
 }
@@ -78,18 +78,18 @@ export function createOutlinedButtonStyles(
  * Generate styles for a text button.
  */
 export function createTextButtonStyles(theme: Theme): CSSObject {
-  const b = theme.palette.buttons;
+  const b = theme.vars.palette.buttons;
 
   return {
     backgroundColor: "transparent",
-    color: theme.palette.text.primary,
+    color: theme.vars.palette.text.primary,
     "&:hover": {
       backgroundColor: b.surface.text.hovered,
-      color: theme.palette.text.primary,
+      color: theme.vars.palette.text.primary,
     },
     "&:disabled, &.Mui-disabled": {
       backgroundColor: "transparent",
-      color: theme.palette.text.disabled,
+      color: theme.vars.palette.text.disabled,
     },
   };
 }
@@ -102,21 +102,21 @@ export function createDestructiveButtonStyles(
   options?: ButtonStyleOptions,
 ): CSSObject {
   const { withShadow = true, withTransform = true } = options || {};
-  const b = theme.palette.buttons;
+  const b = theme.vars.palette.buttons;
 
   return {
     backgroundColor: b.surface.destructive.enabled,
-    color: theme.palette.text.primaryInverse,
+    color: theme.vars.palette.text.primaryInverse,
     borderColor: b.border.destructive,
     ...(withShadow && { boxShadow: sharedTokens.shadow.button }),
     "&:hover": {
       backgroundColor: b.surface.destructive.hovered,
-      color: theme.palette.text.primaryInverse,
+      color: theme.vars.palette.text.primaryInverse,
       ...(withShadow && { boxShadow: sharedTokens.shadow.dropdown }),
     },
     "&:disabled, &.Mui-disabled": {
-      backgroundColor: theme.palette.surface.disabled,
-      color: theme.palette.text.disabled,
+      backgroundColor: theme.vars.palette.surface.disabled,
+      color: theme.vars.palette.text.disabled,
     },
     ...(withTransform && {
       "&:active": {
@@ -130,7 +130,7 @@ export function createDestructiveButtonStyles(
  * Generate styles for a navigation button.
  */
 export function createNavButtonStyles(theme: Theme): CSSObject {
-  const nav = theme.palette.navigation;
+  const nav = theme.vars.palette.navigation;
 
   return {
     backgroundColor: "transparent",
@@ -145,7 +145,7 @@ export function createNavButtonStyles(theme: Theme): CSSObject {
     },
     "&:disabled, &.Mui-disabled": {
       backgroundColor: "transparent",
-      color: theme.palette.text.disabled,
+      color: theme.vars.palette.text.disabled,
       opacity: 0.6,
     },
   };

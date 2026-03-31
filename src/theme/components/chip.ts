@@ -10,71 +10,71 @@ export const MuiChipOverrides: Components<Theme>["MuiChip"] = {
       fontSize: primitives.fontSize.xs,
     },
     filled: ({ theme }) => ({
-      backgroundColor: theme.palette.surface.neutral.primary,
-      color: theme.palette.text.secondary,
+      backgroundColor: theme.vars.palette.surface.neutral.primary,
+      color: theme.vars.palette.text.secondary,
     }),
     outlined: ({ theme }) => ({
-      borderColor: theme.palette.border.neutral.primary,
-      color: theme.palette.text.secondary,
+      borderColor: theme.vars.palette.border.neutral.primary,
+      color: theme.vars.palette.text.secondary,
     }),
     colorPrimary: ({ theme }) => ({
       "&.MuiChip-filled": {
-        backgroundColor: theme.palette.brand.primary.enabled,
-        color: theme.palette.text.primaryInverse,
+        backgroundColor: theme.vars.palette.brand.primary.enabled,
+        color: theme.vars.palette.text.primaryInverse,
       },
       "&.MuiChip-outlined": {
-        borderColor: theme.palette.brand.primary.enabled,
-        color: theme.palette.brand.primary.enabled,
+        borderColor: theme.vars.palette.brand.primary.enabled,
+        color: theme.vars.palette.brand.primary.enabled,
       },
     }),
     colorSecondary: ({ theme }) => ({
       "&.MuiChip-filled": {
-        backgroundColor: theme.palette.brand.accent.enabled,
-        color: theme.palette.text.primaryInverse,
+        backgroundColor: theme.vars.palette.brand.accent.enabled,
+        color: theme.vars.palette.text.primaryInverse,
       },
       "&.MuiChip-outlined": {
-        borderColor: theme.palette.brand.accent.enabled,
-        color: theme.palette.brand.accent.enabled,
+        borderColor: theme.vars.palette.brand.accent.enabled,
+        color: theme.vars.palette.brand.accent.enabled,
       },
     }),
     colorSuccess: ({ theme }) => ({
       "&.MuiChip-filled": {
-        backgroundColor: theme.palette.success.main,
-        color: theme.palette.text.primaryInverse,
+        backgroundColor: theme.vars.palette.success.main,
+        color: theme.vars.palette.text.primaryInverse,
       },
       "&.MuiChip-outlined": {
-        borderColor: theme.palette.success.main,
-        color: theme.palette.success.main,
+        borderColor: theme.vars.palette.success.main,
+        color: theme.vars.palette.success.main,
       },
     }),
     colorError: ({ theme }) => ({
       "&.MuiChip-filled": {
-        backgroundColor: theme.palette.error.main,
-        color: theme.palette.text.primaryInverse,
+        backgroundColor: theme.vars.palette.error.main,
+        color: theme.vars.palette.text.primaryInverse,
       },
       "&.MuiChip-outlined": {
-        borderColor: theme.palette.error.main,
-        color: theme.palette.error.main,
+        borderColor: theme.vars.palette.error.main,
+        color: theme.vars.palette.error.main,
       },
     }),
     colorWarning: ({ theme }) => ({
       "&.MuiChip-filled": {
-        backgroundColor: theme.palette.warning.main,
-        color: theme.palette.text.primaryInverse,
+        backgroundColor: theme.vars.palette.warning.main,
+        color: theme.vars.palette.text.primaryInverse,
       },
       "&.MuiChip-outlined": {
-        borderColor: theme.palette.warning.main,
-        color: theme.palette.warning.main,
+        borderColor: theme.vars.palette.warning.main,
+        color: theme.vars.palette.warning.main,
       },
     }),
     colorInfo: ({ theme }) => ({
       "&.MuiChip-filled": {
-        backgroundColor: theme.palette.info.main,
-        color: theme.palette.text.primaryInverse,
+        backgroundColor: theme.vars.palette.info.main,
+        color: theme.vars.palette.text.primaryInverse,
       },
       "&.MuiChip-outlined": {
-        borderColor: theme.palette.info.main,
-        color: theme.palette.info.main,
+        borderColor: theme.vars.palette.info.main,
+        color: theme.vars.palette.info.main,
       },
     }),
   },

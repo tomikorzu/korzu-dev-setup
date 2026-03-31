@@ -9,21 +9,21 @@ export const MuiCssBaselineOverrides: Components<Theme>["MuiCssBaseline"] = {
       MozOsxFontSmoothing: "grayscale",
     },
     "::selection": {
-      backgroundColor: theme.palette.brand.primary.enabled,
-      color: theme.palette.text.primaryInverse,
+      backgroundColor: theme.vars.palette.brand.primary.enabled,
+      color: theme.vars.palette.text.primaryInverse,
     },
     "::-webkit-scrollbar": {
       width: 8,
       height: 8,
     },
     "::-webkit-scrollbar-track": {
-      backgroundColor: theme.palette.surface.container.enabled,
+      backgroundColor: theme.vars.palette.surface.container.enabled,
     },
     "::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.surface.neutral.primary,
+      backgroundColor: theme.vars.palette.surface.neutral.primary,
       borderRadius: 4,
       "&:hover": {
-        backgroundColor: theme.palette.surface.container.highest,
+        backgroundColor: theme.vars.palette.surface.container.highest,
       },
     },
   }),

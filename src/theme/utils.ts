@@ -43,7 +43,7 @@ export function alpha(channel: string, opacity: number): string {
 export function focusRing(theme: Theme) {
   return {
     "&:focus-visible": {
-      outline: `2px solid ${theme.palette.primary.main}`,
+      outline: `2px solid ${theme.vars.palette.primary.main}`,
       outlineOffset: 2,
     },
   } as const;

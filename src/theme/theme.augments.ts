@@ -1,7 +1,10 @@
 import type { SemanticTokens } from "./tokens/tokens.types";
 
 declare module "@mui/material/styles" {
-  // Augment Palette (for theme.palette access)
+  interface CssThemeVariables {
+    enabled: true;
+  }
+
   interface Palette {
     surface: SemanticTokens["surface"];
     buttons: SemanticTokens["buttons"];

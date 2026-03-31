@@ -87,11 +87,13 @@ export default function Home() {
                 desc: "25 component overrides read semantic tokens. No sx needed for consistency.",
               },
             ].map((f) => (
-              <Card key={f.title} variant="outlined" sx={{ p: 4, flex: 1 }}>
+              <Card key={f.title} variant="outlined"
+                sx={{ bgcolor: "surface.container.highest", p: 4, flex: 1 }}
+              >
                 <Typography variant="h6" fontWeight={600} gutterBottom>
                   {f.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2">
                   {f.desc}
                 </Typography>
               </Card>

@@ -4,10 +4,10 @@ import { sharedTokens } from "../tokens/tokens.shared";
 export const MuiMenuOverrides: Components<Theme>["MuiMenu"] = {
   styleOverrides: {
     paper: ({ theme }) => ({
-      backgroundColor: theme.palette.surface.container.low,
+      backgroundColor: theme.vars.palette.surface.container.low,
       boxShadow: sharedTokens.shadow.dropdown,
       borderRadius: sharedTokens.radius.card,
-      border: `1px solid ${theme.palette.border.neutral.tertiary}`,
+      border: `1px solid ${theme.vars.palette.border.neutral.tertiary}`,
       backgroundImage: "none",
     }),
   },
@@ -16,16 +16,16 @@ export const MuiMenuOverrides: Components<Theme>["MuiMenu"] = {
 export const MuiMenuItemOverrides: Components<Theme>["MuiMenuItem"] = {
   styleOverrides: {
     root: ({ theme }) => ({
-      color: theme.palette.text.primary,
+      color: theme.vars.palette.text.primary,
       transition: "all 150ms ease-out",
       "&:hover": {
-        backgroundColor: theme.palette.surface.neutral.secondary,
+        backgroundColor: theme.vars.palette.surface.neutral.secondary,
       },
       "&.Mui-selected": {
-        backgroundColor: theme.palette.surface.active,
-        color: theme.palette.text.brand.primary,
+        backgroundColor: theme.vars.palette.surface.active,
+        color: theme.vars.palette.text.brand.primary,
         "&:hover": {
-          backgroundColor: theme.palette.surface.active,
+          backgroundColor: theme.vars.palette.surface.active,
         },
       },
     }),

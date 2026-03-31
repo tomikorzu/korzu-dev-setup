@@ -7,7 +7,7 @@ export const MuiDialogOverrides: Components<Theme>["MuiDialog"] = {
     paper: ({ theme }) => ({
       borderRadius: sharedTokens.radius.dialog,
       boxShadow: sharedTokens.shadow.dialog,
-      backgroundColor: theme.palette.surface.container.low,
+      backgroundColor: theme.vars.palette.surface.container.low,
       backgroundImage: "none",
     }),
   },
@@ -18,7 +18,7 @@ export const MuiDialogTitleOverrides: Components<Theme>["MuiDialogTitle"] = {
     root: ({ theme }) => ({
       fontSize: primitives.fontSize.xl,
       fontWeight: primitives.fontWeight.semibold,
-      color: theme.palette.text.primary,
+      color: theme.vars.palette.text.primary,
       padding: `${primitives.spacing[5]}px ${primitives.spacing[6]}px`,
     }),
   },
@@ -28,7 +28,7 @@ export const MuiDialogContentOverrides: Components<Theme>["MuiDialogContent"] =
   {
     styleOverrides: {
       root: ({ theme }) => ({
-        color: theme.palette.text.secondary,
+        color: theme.vars.palette.text.secondary,
         padding: `${primitives.spacing[2]}px ${primitives.spacing[6]}px`,
       }),
     },
