@@ -12,6 +12,7 @@ declare module "@mui/material/styles" {
     brand: SemanticTokens["brand"];
     icons: SemanticTokens["icons"];
     border: SemanticTokens["border"];
+    states: SemanticTokens["states"];
   }
 
   interface PaletteOptions {
@@ -21,6 +22,7 @@ declare module "@mui/material/styles" {
     brand?: SemanticTokens["brand"];
     icons?: SemanticTokens["icons"];
     border?: SemanticTokens["border"];
+    states?: SemanticTokens["states"];
   }
 
   // Augment CssVarsPalette (for theme.vars.palette access)
@@ -31,6 +33,7 @@ declare module "@mui/material/styles" {
     brand: SemanticTokens["brand"];
     icons: SemanticTokens["icons"];
     border: SemanticTokens["border"];
+    states: SemanticTokens["states"];
   }
 
   // Extend TypeText for custom text token properties

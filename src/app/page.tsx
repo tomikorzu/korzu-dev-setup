@@ -121,6 +121,12 @@ export default function Home() {
             <Alert severity="info">
               Contributions welcome on GitHub.
             </Alert>
+            <Alert severity="warning">
+              Contributions welcome on GitHub.
+            </Alert>
+            <Alert severity="error">
+              Contributions welcome on GitHub.
+            </Alert>
           </Stack>
         </Container>
       </Box>

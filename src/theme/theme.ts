@@ -58,6 +58,7 @@ function buildPalette(tokens: SemanticTokens) {
     brand: tokens.brand,
     icons: tokens.icons,
     border: tokens.border,
+    states: tokens.states,
   };
 }
 
