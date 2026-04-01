@@ -1,18 +1,11 @@
 "use client";
 
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import ThemeToggle from "./ThemeToggle";
+import { AppBar, Toolbar, Typography, Button, Stack } from "@mui/material";
+import ThemeToggle from "./ThemeToggle.component";
 
 const NAV_LINKS = [
-  { label: "Hero", href: "#hero" },
-  { label: "Features", href: "#features" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Components", href: "/components" },
 ];
 
 export default function Navbar() {
@@ -36,9 +29,7 @@ export default function Navbar() {
           ))}
         </Stack>
 
-        <Box>
-          <ThemeToggle />
-        </Box>
+        <ThemeToggle />
       </Toolbar>
     </AppBar>
   );

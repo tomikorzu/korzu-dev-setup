@@ -1,20 +1,17 @@
 "use client";
 
 import { useState, type MouseEvent } from "react";
-import IconButton from "@mui/material/IconButton";
-import Popover from "@mui/material/Popover";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import ToggleButton from "@mui/material/ToggleButton";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
+import { IconButton, Popover, ToggleButtonGroup, ToggleButton, Stack, Typography } from "@mui/material";
+import { LightModeOutlined, DarkModeOutlined, SettingsBrightnessOutlined } from "@mui/icons-material";
 import { useColorMode } from "../../hooks/useColorMode";
 
-type Mode = "light" | "dark" | "system";
+enum Mode {
+  LIGHT = "light",
+  DARK = "dark",
+  SYSTEM = "system",
+}
 
-export default function ThemeToggle() {
+const ThemeToggle: React.FC = () => {
   const { mode, setMode, isDark } = useColorMode();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -36,7 +33,7 @@ export default function ThemeToggle() {
   return (
     <>
       <IconButton onClick={handleOpen} size="small">
-        {isDark ? <DarkModeOutlinedIcon /> : <LightModeOutlinedIcon />}
+        {isDark ? <DarkModeOutlined /> : <LightModeOutlined />}
       </IconButton>
 
       <Popover
@@ -51,29 +48,29 @@ export default function ThemeToggle() {
           },
         }}
       >
-        <Stack spacing={1}>
+        <Stack gap={1}>
           <Typography variant="caption" color="text.secondary">
             Theme
           </Typography>
           <ToggleButtonGroup
-            value={mode ?? "system"}
+            value={mode ?? Mode.SYSTEM}
             exclusive
             onChange={handleChange}
             size="small"
           >
-            <ToggleButton value="light">
-              <LightModeOutlinedIcon fontSize="small" sx={{ mr: 0.5 }} />
+            <ToggleButton value={Mode.LIGHT}>
+              <LightModeOutlined fontSize="small" sx={{ mr: 0.5 }} />
               Light
             </ToggleButton>
-            <ToggleButton value="system">
-              <SettingsBrightnessOutlinedIcon
+            <ToggleButton value={Mode.SYSTEM}>
+              <SettingsBrightnessOutlined
                 fontSize="small"
                 sx={{ mr: 0.5 }}
               />
               Auto
             </ToggleButton>
-            <ToggleButton value="dark">
-              <DarkModeOutlinedIcon fontSize="small" sx={{ mr: 0.5 }} />
+            <ToggleButton value={Mode.DARK}>
+              <DarkModeOutlined fontSize="small" sx={{ mr: 0.5 }} />
               Dark
             </ToggleButton>
           </ToggleButtonGroup>
@@ -81,4 +78,6 @@ export default function ThemeToggle() {
       </Popover>
     </>
   );
-}
+};
+
+export default ThemeToggle;
