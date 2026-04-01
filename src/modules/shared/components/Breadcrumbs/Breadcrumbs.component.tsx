@@ -2,6 +2,7 @@ import { Breadcrumbs as MuiBreadcrumbs, Link, Stack, Typography } from "@mui/mat
 import { NavigateNext } from "@mui/icons-material";
 import * as icons from "@mui/icons-material";
 import { getIconByString } from "../../utils/getIconByString.util";
+import NextLink from "next/link";
 
 export interface BreadcrumbItem {
   label: string;
@@ -24,7 +25,13 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
     <MuiBreadcrumbs
       separator={separator ?? <NavigateNext sx={{ fontSize: "small" }} />}
       maxItems={maxItems}
-      sx={{ "& .MuiBreadcrumbs-separator": { color: "text.tertiary" } }}
+      sx={{
+        "& .MuiBreadcrumbs-separator": { color: "text.tertiary" },
+        "& .MuiBreadcrumbs-ol > li > button": {
+          bgcolor: "surface.container.high",
+          color: "text.primary",
+        },
+      }}
     >
       {items.map((item, i) => {
         const isLast = i === items.length - 1;
@@ -49,7 +56,8 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         return (
           <Link
             key={item.label}
-            href={item.href}
+            component={NextLink}
+            href={item.href || "#"}
             underline="none"
             variant="body2"
             color={isLast ? "text.primary" : "text.secondary"}
