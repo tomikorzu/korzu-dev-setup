@@ -10,13 +10,10 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Alert from "@mui/material/Alert";
-import Navbar from "@/modules/shared/components/Navbar/Navbar";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
-
       {/* Hero */}
       <Box
         id="hero"

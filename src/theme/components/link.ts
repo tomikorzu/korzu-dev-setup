@@ -1,8 +1,10 @@
 import type { Components, Theme } from "@mui/material/styles";
+import NextLink from "next/link";
 
 export const MuiLinkOverrides: Components<Theme>["MuiLink"] = {
   defaultProps: {
     underline: "hover",
+    component: NextLink
   },
   styleOverrides: {
     root: ({ theme }) => ({

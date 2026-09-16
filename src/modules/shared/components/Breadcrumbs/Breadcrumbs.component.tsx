@@ -56,7 +56,6 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         return (
           <Link
             key={item.label}
-            component={NextLink}
             href={item.href || "#"}
             underline="none"
             variant="body2"

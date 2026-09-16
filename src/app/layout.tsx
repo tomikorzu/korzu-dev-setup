@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 import AppProvider from "@/modules/shared/providers/App.provider";
+import InterfaceWrapper from "@/modules/shared/components/InterfaceWrapper/InterfaceWrapper.component";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +17,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <InitColorSchemeScript attribute="data" defaultMode="system" />
-        <AppProvider>{children}</AppProvider>
+        <AppProvider>
+          <InterfaceWrapper>
+            {children}
+          </InterfaceWrapper>
+        </AppProvider>
       </body>
     </html>
   );
