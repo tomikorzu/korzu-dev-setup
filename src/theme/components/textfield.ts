@@ -7,28 +7,28 @@ export const MuiTextFieldOverrides: Components<Theme>["MuiTextField"] = {
       "& .MuiOutlinedInput-root": {
         borderRadius: sharedTokens.radius.input,
         transition: sharedTokens.transition.fast,
-        backgroundColor: theme.palette.surface.container.low,
+        backgroundColor: theme.vars.palette.surface.container.low,
         "&:hover": {
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: theme.palette.border.neutral.primary,
+            borderColor: theme.vars.palette.border.neutral.primary,
           },
         },
         "&.Mui-focused": {
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: theme.palette.border.focused,
+            borderColor: theme.vars.palette.border.focused,
           },
         },
         "&.Mui-error": {
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: theme.palette.border.negative,
+            borderColor: theme.vars.palette.border.negative,
           },
         },
         "& .MuiOutlinedInput-notchedOutline": {
-          borderColor: theme.palette.border.neutral.secondary,
+          borderColor: theme.vars.palette.border.neutral.secondary,
         },
       },
       "& .MuiInputBase-input::placeholder": {
-        color: theme.palette.text.tertiary,
+        color: theme.vars.palette.text.tertiary,
       },
     }),
   },

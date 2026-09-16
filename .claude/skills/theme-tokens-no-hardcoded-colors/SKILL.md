@@ -5,25 +5,25 @@ description: Use when writing or reviewing any styling in this project — color
 
 # Theming: tokens only, never hardcoded values
 
-This starter is rebranded per project by changing **one file**: `src/theme/brand.ts`. That only
-works if nothing in the app ever hardcodes a color, and both light and dark mode stay correct.
+This starter is rebranded per project by changing **one file**: `src/theme/project.config.ts`.
+That only works if nothing in the app ever hardcodes a color, and both light and dark mode stay
+correct.
 
 ## The token chain
 
 ```
 src/theme/primitives.ts   → raw color scales (50–900), spacing, radius, shadow, etc. Never used directly in components.
-src/theme/brand.ts        → maps semantic roles (primary, accent, positive, negative, info, caution, neutral)
-                             to a primitives color scale. THE ONLY FILE to edit to rebrand a project.
+src/theme/project.config.ts → picks brand colors, fonts, and radius from primitives. THE ONLY FILE to edit to rebrand a project.
 src/theme/tokens/tokens.light.ts / tokens.dark.ts
                            → derive every semantic token (surface, text, icons, border, buttons, navigation, states)
-                             from brand.ts, per color scheme. Structural parity enforced by tokens.types.ts.
+                             from project.config.ts, per color scheme. Structural parity enforced by tokens.types.ts.
 src/theme/theme.ts        → buildPalette() turns SemanticTokens into MUI's palette + colorSchemes (light/dark).
-src/theme/components/*.ts → component overrides/variants read from theme.palette.*, never a raw hex.
+src/theme/components/*.ts → component overrides/variants read colors from theme.vars.palette.*, never a raw hex.
 ```
 
 To start a new project from this starter: change `brand.primary`/`brand.accent` (and the
-semantic colors, if needed) in `brand.ts`. Everything else — buttons, chips, alerts, nav, dark
-mode — updates automatically because it all derives from that one file.
+semantic colors, if needed) in `project.config.ts`. Everything else — buttons, chips, alerts,
+nav, dark mode — updates automatically because it all derives from that one file.
 
 ## Rules
 
@@ -32,12 +32,15 @@ mode — updates automatically because it all derives from that one file.
    as a token — find it in `tokens.types.ts` (surface, text, icons, border, buttons, navigation,
    states, brand) or add it there first, deriving from `primitives.colors`.
 2. **New primitive scales, not new raw colors.** If a genuinely new color family is needed, add
-   it to `primitives.colors`, then reference it from `brand.ts` or the relevant token file — never
-   inline a new hex anywhere else.
-3. **Access tokens through `theme.palette.*` in styleOverrides/variant callbacks**, per
-   `mui-variants-no-sx`. Only plain, standard MUI palette props (`primary.main`, etc.) may use
-   `theme.vars.palette.*`; custom token groups (surface, buttons, navigation, brand, icons,
-   border, states, custom text keys) must go through `theme.palette.*`.
+   it to `primitives.colors`, then reference it from `project.config.ts` or the relevant token
+   file — never inline a new hex anywhere else.
+3. **Access colors through `theme.vars.palette.*` in styleOverrides/variant callbacks**, never
+   `theme.palette.*`. `theme.palette.*` is a static snapshot baked from `defaultColorScheme` — it
+   never reacts to dark/light switching. `theme.vars.palette.*` returns a `var(--mui-palette-...)`
+   reference that resolves live via the `[data-dark]`/`[data-light]` CSS MUI generates. This
+   applies to every key, standard or custom (surface, buttons, navigation, brand, icons, border,
+   states, custom text keys) — they all get real CSS vars as long as they're declared in
+   `theme.augments.ts`'s `CssVarsPalette`.
 4. **Every new token must be added to both `tokens.light.ts` and `tokens.dark.ts`** with the same
    shape — `SemanticTokens` (`tokens.types.ts`) enforces this at compile time. Never add a token
    to only one mode.

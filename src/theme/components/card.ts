@@ -7,8 +7,8 @@ export const MuiCardOverrides: Components<Theme>["MuiCard"] = {
       borderRadius: sharedTokens.radius.card,
       boxShadow: sharedTokens.shadow.card,
       transition: sharedTokens.transition.base,
-      backgroundColor: theme.palette.surface.container.low,
-      borderColor: theme.palette.border.neutral.tertiary,
+      backgroundColor: theme.vars.palette.surface.container.low,
+      borderColor: theme.vars.palette.border.neutral.tertiary,
       "&:hover": {
         transform: "translateY(-4px)",
         boxShadow: sharedTokens.shadow.cardHover,

@@ -4,8 +4,8 @@ import { primitives } from "../primitives";
 export const MuiDrawerOverrides: Components<Theme>["MuiDrawer"] = {
   styleOverrides: {
     paper: ({ theme }) => ({
-      backgroundColor: theme.palette.surface.container.low,
-      borderRight: `${primitives.borderWidth[1]}px solid ${theme.palette.border.neutral.tertiary}`,
+      backgroundColor: theme.vars.palette.surface.container.low,
+      borderRight: `${primitives.borderWidth[1]}px solid ${theme.vars.palette.border.neutral.tertiary}`,
     }),
   },
 };

@@ -9,10 +9,10 @@ export const MuiLinkOverrides: Components<Theme>["MuiLink"] = {
   },
   styleOverrides: {
     root: ({ theme }) => ({
-      color: theme.palette.brand.primary.enabled,
+      color: theme.vars.palette.brand.primary.enabled,
       transition: `color ${primitives.transition.duration.fast} ${primitives.transition.timing.easeOut}`,
       "&:hover": {
-        color: theme.palette.brand.primary.hovered,
+        color: theme.vars.palette.brand.primary.hovered,
       },
     }),
   },

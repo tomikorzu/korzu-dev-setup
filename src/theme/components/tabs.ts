@@ -5,7 +5,7 @@ import { sharedTokens } from "../tokens/tokens.shared";
 export const MuiTabsOverrides: Components<Theme>["MuiTabs"] = {
   styleOverrides: {
     indicator: ({ theme }) => ({
-      backgroundColor: theme.palette.brand.primary.enabled,
+      backgroundColor: theme.vars.palette.brand.primary.enabled,
     }),
   },
 };
@@ -13,16 +13,16 @@ export const MuiTabsOverrides: Components<Theme>["MuiTabs"] = {
 export const MuiTabOverrides: Components<Theme>["MuiTab"] = {
   styleOverrides: {
     root: ({ theme }) => ({
-      color: theme.palette.text.tertiary,
+      color: theme.vars.palette.text.tertiary,
       textTransform: "none",
       fontWeight: primitives.fontWeight.medium,
       transition: sharedTokens.transition.fast,
       "&.Mui-selected": {
-        color: theme.palette.brand.primary.enabled,
+        color: theme.vars.palette.brand.primary.enabled,
       },
       "&:hover": {
-        color: theme.palette.text.primary,
-        backgroundColor: theme.palette.surface.neutral.secondary,
+        color: theme.vars.palette.text.primary,
+        backgroundColor: theme.vars.palette.surface.neutral.secondary,
       },
     }),
   },

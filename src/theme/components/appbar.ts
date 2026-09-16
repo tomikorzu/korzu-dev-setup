@@ -8,8 +8,8 @@ export const MuiAppBarOverrides: Components<Theme>["MuiAppBar"] = {
   },
   styleOverrides: {
     root: ({ theme }) => ({
-      backgroundColor: theme.palette.surface.container.enabled,
-      borderBottom: `${primitives.borderWidth[1]}px solid ${theme.palette.border.neutral.tertiary}`,
+      backgroundColor: theme.vars.palette.surface.container.enabled,
+      borderBottom: `${primitives.borderWidth[1]}px solid ${theme.vars.palette.border.neutral.tertiary}`,
       backgroundImage: "none",
     }),
   },
