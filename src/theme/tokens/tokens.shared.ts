@@ -1,10 +1,4 @@
-/**
- * Shared Tokens (Mode-Agnostic)
- *
- * Tokens that do NOT change between dark and light mode.
- * Includes: semantic spacing, radius, shadows, transitions.
- */
-
+// tokens that don't change between light and dark mode
 import { primitives } from "../primitives";
 
 export const sharedTokens = {

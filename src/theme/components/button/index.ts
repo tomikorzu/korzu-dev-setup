@@ -1,5 +1,6 @@
 import type { Components, Theme } from "@mui/material/styles";
 import { primitives } from "../../primitives";
+import { sharedTokens } from "../../tokens/tokens.shared";
 import {
   buildButtonStyleOverrides,
   createDestructiveButtonStyles,
@@ -30,12 +31,12 @@ export const MuiButtonOverrides: Components<Theme>["MuiButton"] = {
     },
   ],
   styleOverrides: {
-    root: ({ theme }) => ({
-      borderRadius: theme.vars.palette.buttons.radius.md,
+    root: () => ({
+      borderRadius: sharedTokens.radius.button,
       padding: `${primitives.spacing[2]}px ${primitives.spacing[6]}px`,
       fontSize: primitives.fontSize.sm,
       fontWeight: primitives.fontWeight.semibold,
-      transition: "all 300ms ease-in-out",
+      transition: sharedTokens.transition.base,
       textTransform: "none",
     }),
 

@@ -1,17 +1,15 @@
 import { createTheme } from "@mui/material/styles";
-import { primitives } from "./primitives";
-import { darkTokens, lightTokens } from "./tokens";
-import { typography } from "./typography";
 import { components } from "./components";
+import { primitives } from "./primitives";
+import { projectConfig } from "./project.config";
+import { darkTokens, lightTokens } from "./tokens";
 import type { SemanticTokens } from "./tokens/tokens.types";
+import { typography } from "./typography";
 
 import "./theme.augments";
 
-/**
- * Build a MUI PaletteOptions from SemanticTokens.
- * Custom tokens (surface, buttons, navigation, etc.) are added
- * as palette extensions — MUI v7 converts them to CSS vars automatically.
- */
+// Maps SemanticTokens onto MUI's palette shape. Custom keys (surface, buttons, etc.)
+// get turned into CSS vars automatically, same as the standard ones.
 function buildPalette(tokens: SemanticTokens) {
   return {
     primary: {
@@ -51,7 +49,6 @@ function buildPalette(tokens: SemanticTokens) {
     },
     divider: tokens.border.neutral.tertiary,
 
-    // Custom palette extensions — become CSS vars automatically
     surface: tokens.surface,
     buttons: tokens.buttons,
     navigation: tokens.navigation,
@@ -70,12 +67,12 @@ const theme = createTheme({
     dark: { palette: buildPalette(darkTokens) },
     light: { palette: buildPalette(lightTokens) },
   },
-  defaultColorScheme: "light",
+  defaultColorScheme: projectConfig.defaultColorScheme,
 
   typography,
 
   shape: {
-    borderRadius: primitives.borderRadius.lg,
+    borderRadius: projectConfig.radius.base,
   },
 
   spacing: primitives.spacing[1],

@@ -1,35 +1,29 @@
-/**
- * Component Overrides Index
- *
- * Centralizes all MUI component customizations.
- */
-
 import type { Components, Theme } from "@mui/material/styles";
-import { MuiCssBaselineOverrides } from "./cssbaseline";
+import { MuiAlertOverrides } from "./alert";
+import { MuiAppBarOverrides } from "./appbar";
+import { MuiAvatarOverrides } from "./avatar";
 import { MuiButtonOverrides } from "./button";
-import { MuiIconButtonOverrides } from "./iconbutton";
 import { MuiCardOverrides } from "./card";
 import { MuiChipOverrides } from "./chip";
-import { MuiTextFieldOverrides } from "./textfield";
-import { MuiLinkOverrides } from "./link";
-import { MuiPaperOverrides } from "./paper";
-import { MuiDividerOverrides } from "./divider";
-import { MuiAppBarOverrides } from "./appbar";
-import { MuiDrawerOverrides } from "./drawer";
+import { MuiCssBaselineOverrides } from "./cssbaseline";
 import {
+  MuiDialogActionsOverrides,
+  MuiDialogContentOverrides,
   MuiDialogOverrides,
   MuiDialogTitleOverrides,
-  MuiDialogContentOverrides,
-  MuiDialogActionsOverrides,
 } from "./dialog";
-import { MuiAlertOverrides } from "./alert";
-import { MuiTooltipOverrides } from "./tooltip";
-import { MuiSkeletonOverrides } from "./skeleton";
-import { MuiMenuOverrides, MuiMenuItemOverrides } from "./menu";
+import { MuiDividerOverrides } from "./divider";
+import { MuiDrawerOverrides } from "./drawer";
+import { MuiIconButtonOverrides } from "./iconbutton";
+import { MuiLinkOverrides } from "./link";
 import { MuiListItemButtonOverrides } from "./listitembutton";
-import { MuiTabsOverrides, MuiTabOverrides } from "./tabs";
+import { MuiMenuItemOverrides, MuiMenuOverrides } from "./menu";
+import { MuiPaperOverrides } from "./paper";
+import { MuiSkeletonOverrides } from "./skeleton";
 import { MuiSwitchOverrides } from "./switch";
-import { MuiAvatarOverrides } from "./avatar";
+import { MuiTabOverrides, MuiTabsOverrides } from "./tabs";
+import { MuiTextFieldOverrides } from "./textfield";
+import { MuiTooltipOverrides } from "./tooltip";
 
 export const components: Components<Theme> = {
   MuiCssBaseline: MuiCssBaselineOverrides,

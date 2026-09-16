@@ -1,40 +1,44 @@
 import { primitives } from "./primitives";
+import { projectConfig } from "./project.config";
+import { fluidType } from "./utils";
 
+// Headings scale fluidly between mobile and desktop; body/UI text stays fixed
+// so it doesn't get harder to read or tap on small screens.
 export const typography = {
-  fontFamily: primitives.fontFamily.sans,
+  fontFamily: projectConfig.font.sans,
 
   h1: {
-    fontSize: primitives.fontSize["5xl"],
+    fontSize: fluidType(32, 48),
     fontWeight: primitives.fontWeight.bold,
     lineHeight: primitives.lineHeight.tight,
     letterSpacing: primitives.letterSpacing.tight,
   },
   h2: {
-    fontSize: primitives.fontSize["4xl"],
+    fontSize: fluidType(28, 36),
     fontWeight: primitives.fontWeight.bold,
     lineHeight: primitives.lineHeight.tight,
     letterSpacing: primitives.letterSpacing.tight,
   },
   h3: {
-    fontSize: primitives.fontSize["3xl"],
+    fontSize: fluidType(24, 30),
     fontWeight: primitives.fontWeight.semibold,
     lineHeight: primitives.lineHeight.snug,
     letterSpacing: primitives.letterSpacing.normal,
   },
   h4: {
-    fontSize: primitives.fontSize["2xl"],
+    fontSize: fluidType(20, 24),
     fontWeight: primitives.fontWeight.semibold,
     lineHeight: primitives.lineHeight.snug,
     letterSpacing: primitives.letterSpacing.normal,
   },
   h5: {
-    fontSize: primitives.fontSize.xl,
+    fontSize: fluidType(18, 20),
     fontWeight: primitives.fontWeight.medium,
     lineHeight: primitives.lineHeight.normal,
     letterSpacing: primitives.letterSpacing.normal,
   },
   h6: {
-    fontSize: primitives.fontSize.lg,
+    fontSize: fluidType(16, 18),
     fontWeight: primitives.fontWeight.medium,
     lineHeight: primitives.lineHeight.normal,
     letterSpacing: primitives.letterSpacing.normal,

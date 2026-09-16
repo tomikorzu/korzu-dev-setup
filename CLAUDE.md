@@ -21,6 +21,9 @@ treat everything here as library code, not a one-off app.
   support. Use `theme.palette`, never `theme.vars.palette`, for custom token groups inside
   `styleOverrides`/variant callbacks. Never override `body` background/color in `CssBaseline`;
   MUI's CSS variables handle that. See the `theme-tokens-no-hardcoded-colors` skill.
+- **Typography:** `src/theme/typography.ts` is fixed across every project (headings scale
+  fluidly mobile→desktop via `fluidType()`, body/UI text stays fixed). Always use `Typography`
+  variants, never a hardcoded font size. See the `typography-variants` skill.
 - **Next.js:** Server Components by default, `"use client"` only when needed (state, effects,
   GSAP). Pages stay thin and compose shared components. See the `nextjs-patterns` skill.
 - **Animations:** GSAP only, scoped with `useGSAP` in client components. See the
@@ -39,3 +42,4 @@ treat everything here as library code, not a one-off app.
 - `forms-rhf-zod` — building forms with react-hook-form + zod
 - `tanstack-query-data` — fetching/caching/mutating server data
 - `theme-tokens-no-hardcoded-colors` — colors/spacing/radius always via tokens, never hardcoded
+- `typography-variants` — fixed, responsive type scale; always use `Typography` variants

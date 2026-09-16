@@ -1,11 +1,4 @@
-/**
- * Button Style Helpers
- *
- * Helper functions to generate button styles automatically
- * from theme.vars.palette.buttons, avoiding code repetition.
- */
-
-import type { Theme, CSSObject } from "@mui/material/styles";
+import type { CSSObject, Theme } from "@mui/material/styles";
 import { sharedTokens } from "../../tokens/tokens.shared";
 
 interface ButtonStyleOptions {
@@ -14,28 +7,25 @@ interface ButtonStyleOptions {
   borderWidth?: number;
 }
 
-/**
- * Generate styles for a contained button.
- */
 export function createContainedButtonStyles(
   theme: Theme,
   options?: ButtonStyleOptions,
 ): CSSObject {
   const { withShadow = true, withTransform = true } = options || {};
-  const b = theme.vars.palette.buttons;
+  const b = theme.palette.buttons;
 
   return {
     backgroundColor: b.surface.contained.enabled,
-    color: theme.vars.palette.text.primaryInverse,
+    color: theme.palette.text.primaryInverse,
     ...(withShadow && { boxShadow: sharedTokens.shadow.button }),
     "&:hover": {
       backgroundColor: b.surface.contained.hovered,
-      color: theme.vars.palette.text.primaryInverse,
+      color: theme.palette.text.primaryInverse,
       ...(withShadow && { boxShadow: sharedTokens.shadow.dropdown }),
     },
     "&:disabled, &.Mui-disabled": {
-      backgroundColor: theme.vars.palette.surface.disabled,
-      color: theme.vars.palette.text.disabled,
+      backgroundColor: theme.palette.surface.disabled,
+      color: theme.palette.text.disabled,
     },
     ...(withTransform && {
       "&:active": {
@@ -45,15 +35,12 @@ export function createContainedButtonStyles(
   };
 }
 
-/**
- * Generate styles for an outlined button.
- */
 export function createOutlinedButtonStyles(
   theme: Theme,
   options?: ButtonStyleOptions,
 ): CSSObject {
   const { borderWidth = 2 } = options || {};
-  const b = theme.vars.palette.buttons;
+  const b = theme.palette.buttons;
 
   return {
     backgroundColor: b.surface.outlined.enabled,
@@ -68,55 +55,49 @@ export function createOutlinedButtonStyles(
     },
     "&:disabled, &.Mui-disabled": {
       backgroundColor: "transparent",
-      color: theme.vars.palette.text.disabled,
-      borderColor: theme.vars.palette.border.disabled,
+      color: theme.palette.text.disabled,
+      borderColor: theme.palette.border.disabled,
     },
   };
 }
 
-/**
- * Generate styles for a text button.
- */
 export function createTextButtonStyles(theme: Theme): CSSObject {
-  const b = theme.vars.palette.buttons;
+  const b = theme.palette.buttons;
 
   return {
     backgroundColor: "transparent",
-    color: theme.vars.palette.text.primary,
+    color: theme.palette.text.primary,
     "&:hover": {
       backgroundColor: b.surface.text.hovered,
-      color: theme.vars.palette.text.primary,
+      color: theme.palette.text.primary,
     },
     "&:disabled, &.Mui-disabled": {
       backgroundColor: "transparent",
-      color: theme.vars.palette.text.disabled,
+      color: theme.palette.text.disabled,
     },
   };
 }
 
-/**
- * Generate styles for a destructive button.
- */
 export function createDestructiveButtonStyles(
   theme: Theme,
   options?: ButtonStyleOptions,
 ): CSSObject {
   const { withShadow = true, withTransform = true } = options || {};
-  const b = theme.vars.palette.buttons;
+  const b = theme.palette.buttons;
 
   return {
     backgroundColor: b.surface.destructive.enabled,
-    color: theme.vars.palette.text.primaryInverse,
+    color: theme.palette.text.primaryInverse,
     borderColor: b.border.destructive,
     ...(withShadow && { boxShadow: sharedTokens.shadow.button }),
     "&:hover": {
       backgroundColor: b.surface.destructive.hovered,
-      color: theme.vars.palette.text.primaryInverse,
+      color: theme.palette.text.primaryInverse,
       ...(withShadow && { boxShadow: sharedTokens.shadow.dropdown }),
     },
     "&:disabled, &.Mui-disabled": {
-      backgroundColor: theme.vars.palette.surface.disabled,
-      color: theme.vars.palette.text.disabled,
+      backgroundColor: theme.palette.surface.disabled,
+      color: theme.palette.text.disabled,
     },
     ...(withTransform && {
       "&:active": {
@@ -126,11 +107,8 @@ export function createDestructiveButtonStyles(
   };
 }
 
-/**
- * Generate styles for a navigation button.
- */
 export function createNavButtonStyles(theme: Theme): CSSObject {
-  const nav = theme.vars.palette.navigation;
+  const nav = theme.palette.navigation;
 
   return {
     backgroundColor: "transparent",
@@ -145,16 +123,12 @@ export function createNavButtonStyles(theme: Theme): CSSObject {
     },
     "&:disabled, &.Mui-disabled": {
       backgroundColor: "transparent",
-      color: theme.vars.palette.text.disabled,
+      color: theme.palette.text.disabled,
       opacity: 0.6,
     },
   };
 }
 
-/**
- * Factory that generates all button styleOverrides
- * for spreading into the MuiButton override.
- */
 export function buildButtonStyleOverrides(options?: ButtonStyleOptions) {
   return {
     contained: ({ theme }: { theme: Theme }) =>

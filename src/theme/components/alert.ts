@@ -1,6 +1,8 @@
 import { Cancel, CheckCircle, Info, Warning } from "@mui/icons-material";
 import type { Components, Theme } from "@mui/material/styles";
 import { createElement } from "react";
+import { primitives } from "../primitives";
+import { sharedTokens } from "../tokens/tokens.shared";
 
 export const MuiAlertOverrides: Components<Theme>["MuiAlert"] = {
   defaultProps: {
@@ -14,41 +16,41 @@ export const MuiAlertOverrides: Components<Theme>["MuiAlert"] = {
     variant: "standard",
   },
   styleOverrides: {
-    root: ({ theme }) => ({
-      borderWidth: 1,
+    root: () => ({
+      borderWidth: primitives.borderWidth[1],
       borderStyle: "solid",
-      borderRadius: theme.vars.palette.buttons.radius.md,
+      borderRadius: sharedTokens.radius.button,
     }),
     standardSuccess: ({ theme }) => ({
-      backgroundColor: theme.vars.palette.states.positive.tertiary,
-      borderColor: theme.vars.palette.border.positive,
-      color: theme.vars.palette.text.positive.secondary,
-      '& .MuiAlert-icon': {
-        color: theme.vars.palette.icons.positive,
+      backgroundColor: theme.palette.states.positive.tertiary,
+      borderColor: theme.palette.border.positive,
+      color: theme.palette.text.positive.secondary,
+      "& .MuiAlert-icon": {
+        color: theme.palette.icons.positive,
       },
     }),
     standardError: ({ theme }) => ({
-      backgroundColor: theme.vars.palette.states.negative.tertiary,
-      borderColor: theme.vars.palette.border.negative,
-      color: theme.vars.palette.text.negative.secondary,
-      '& .MuiAlert-icon': {
-        color: theme.vars.palette.icons.negative,
+      backgroundColor: theme.palette.states.negative.tertiary,
+      borderColor: theme.palette.border.negative,
+      color: theme.palette.text.negative.secondary,
+      "& .MuiAlert-icon": {
+        color: theme.palette.icons.negative,
       },
     }),
     standardWarning: ({ theme }) => ({
-      backgroundColor: theme.vars.palette.states.caution.tertiary,
-      borderColor: theme.vars.palette.border.caution,
-      color: theme.vars.palette.text.caution.secondary,
-      '& .MuiAlert-icon': {
-        color: theme.vars.palette.icons.caution,
+      backgroundColor: theme.palette.states.caution.tertiary,
+      borderColor: theme.palette.border.caution,
+      color: theme.palette.text.caution.secondary,
+      "& .MuiAlert-icon": {
+        color: theme.palette.icons.caution,
       },
     }),
     standardInfo: ({ theme }) => ({
-      backgroundColor: theme.vars.palette.states.info.tertiary,
-      borderColor: theme.vars.palette.border.info,
-      color: theme.vars.palette.text.info.secondary,
-      '& .MuiAlert-icon': {
-        color: theme.vars.palette.icons.info,
+      backgroundColor: theme.palette.states.info.tertiary,
+      borderColor: theme.palette.border.info,
+      color: theme.palette.text.info.secondary,
+      "& .MuiAlert-icon": {
+        color: theme.palette.icons.info,
       },
     }),
   },

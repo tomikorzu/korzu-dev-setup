@@ -1,10 +1,4 @@
-/**
- * Semantic Tokens Type Definition
- *
- * Interface that enforces structural parity between light and dark
- * at compile time. Structure defined by semantic purpose.
- */
-
+// keeps tokens.light.ts and tokens.dark.ts structurally in sync at compile time
 export interface SemanticTokens {
   states: {
     positive: { primary: string; secondary: string; tertiary: string };
@@ -57,12 +51,6 @@ export interface SemanticTokens {
     border: {
       outlined: { enabled: string; hovered: string };
       destructive: string;
-    };
-    radius: {
-      xs: number;
-      sm: number;
-      md: number;
-      lg: number;
     };
   };
 

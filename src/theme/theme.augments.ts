@@ -1,42 +1,24 @@
 import type { SemanticTokens } from "./tokens/tokens.types";
 
+type CustomPaletteTokens = {
+  surface: SemanticTokens["surface"];
+  buttons: SemanticTokens["buttons"];
+  navigation: SemanticTokens["navigation"];
+  brand: SemanticTokens["brand"];
+  icons: SemanticTokens["icons"];
+  border: SemanticTokens["border"];
+  states: SemanticTokens["states"];
+};
+
 declare module "@mui/material/styles" {
   interface CssThemeVariables {
     enabled: true;
   }
 
-  interface Palette {
-    surface: SemanticTokens["surface"];
-    buttons: SemanticTokens["buttons"];
-    navigation: SemanticTokens["navigation"];
-    brand: SemanticTokens["brand"];
-    icons: SemanticTokens["icons"];
-    border: SemanticTokens["border"];
-    states: SemanticTokens["states"];
-  }
+  interface Palette extends CustomPaletteTokens {}
+  interface PaletteOptions extends Partial<CustomPaletteTokens> {}
+  interface CssVarsPalette extends CustomPaletteTokens {}
 
-  interface PaletteOptions {
-    surface?: SemanticTokens["surface"];
-    buttons?: SemanticTokens["buttons"];
-    navigation?: SemanticTokens["navigation"];
-    brand?: SemanticTokens["brand"];
-    icons?: SemanticTokens["icons"];
-    border?: SemanticTokens["border"];
-    states?: SemanticTokens["states"];
-  }
-
-  // Augment CssVarsPalette (for theme.vars.palette access)
-  interface CssVarsPalette {
-    surface: SemanticTokens["surface"];
-    buttons: SemanticTokens["buttons"];
-    navigation: SemanticTokens["navigation"];
-    brand: SemanticTokens["brand"];
-    icons: SemanticTokens["icons"];
-    border: SemanticTokens["border"];
-    states: SemanticTokens["states"];
-  }
-
-  // Extend TypeText for custom text token properties
   interface TypeText {
     primaryInverse: string;
     tertiary: string;

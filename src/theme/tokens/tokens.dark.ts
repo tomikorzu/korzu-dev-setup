@@ -1,16 +1,9 @@
-/**
- * Dark Mode Semantic Tokens
- *
- * All semantic colors for dark mode.
- * Imports from brand.ts — changing brand updates everything.
- */
-
-import { brand } from "../brand";
-import { primitives } from "../primitives";
+// everything here derives from project.config.ts, so changing brand updates all of it
+import { projectConfig } from "../project.config";
 import type { SemanticTokens } from "./tokens.types";
 
+const { brand } = projectConfig;
 const { neutral } = brand;
-const { borderRadius } = primitives;
 
 const states = {
   positive: {
@@ -126,12 +119,6 @@ const buttons = {
       hovered: brand.primary[300],
     },
     destructive: brand.negative[400],
-  },
-  radius: {
-    xs: borderRadius.none,
-    sm: borderRadius.sm,
-    md: borderRadius.base,
-    lg: borderRadius.md,
   },
 };
 

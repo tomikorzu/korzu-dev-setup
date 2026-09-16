@@ -1,16 +1,9 @@
-/**
- * Light Mode Semantic Tokens
- *
- * All semantic colors for light mode.
- * Same structure as dark, inverted shades.
- */
-
-import { brand } from "../brand";
-import { primitives } from "../primitives";
+// same structure as tokens.dark.ts, just inverted shades
+import { projectConfig } from "../project.config";
 import type { SemanticTokens } from "./tokens.types";
 
+const { brand } = projectConfig;
 const { neutral } = brand;
-const { borderRadius } = primitives;
 
 const states = {
   positive: {
@@ -126,12 +119,6 @@ const buttons = {
       hovered: brand.primary[700],
     },
     destructive: brand.negative[600],
-  },
-  radius: {
-    xs: borderRadius.none,
-    sm: borderRadius.sm,
-    md: borderRadius.base,
-    lg: borderRadius.md,
   },
 };
 

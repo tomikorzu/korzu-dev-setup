@@ -1,17 +1,10 @@
-/**
- * Theme System Exports
- *
- * Centralized entry point for the entire theming system.
- */
-
-export { default as theme } from "./theme";
+export { components } from "./components";
+export type { Primitives } from "./primitives";
 export { primitives } from "./primitives";
-export { brand } from "./brand";
+export type { BrandConfig, ProjectConfig } from "./project.config";
+export { projectConfig } from "./project.config";
+export { default as theme } from "./theme";
+export type { SemanticTokens, SharedTokens } from "./tokens";
 export { darkTokens, lightTokens, sharedTokens } from "./tokens";
 export { typography } from "./typography";
-export { components } from "./components";
-export { alpha, focusRing, fluidType } from "./utils";
-
-export type { Primitives } from "./primitives";
-export type { BrandConfig } from "./brand";
-export type { SemanticTokens, SharedTokens } from "./tokens";
+export { alpha, fluidType, focusRing } from "./utils";
