@@ -1,0 +1,51 @@
+{
+  "Nav": {
+    "home": "Inicio",
+    "components": "Componentes",
+    "search": "Buscar o ir a una página…",
+    "goTo": "Ir a {page}"
+  },
+  "Home": {
+    "hero": {
+      "badge": "Código abierto",
+      "title": "Construí más rápido con una base sólida",
+      "subtitle": "Un setup reutilizable con Next.js, MUI y GSAP. Modo claro/oscuro, theming basado en tokens, y cero sx desordenado.",
+      "getStarted": "Empezar",
+      "viewDocs": "Ver documentación"
+    },
+    "features": {
+      "title": "Funcionalidades",
+      "subtitle": "Todo lo que necesitás para lanzar apps consistentes y personalizables, rápido.",
+      "items": [
+        {
+          "title": "Rebranding en un solo archivo",
+          "desc": "Cambiá project.config.ts y cada botón, superficie y color de navegación se actualiza automáticamente."
+        },
+        {
+          "title": "Modo claro y oscuro",
+          "desc": "Cambio basado en variables CSS, sin parpadeo. Respeta la preferencia del dispositivo."
+        },
+        {
+          "title": "Componentes basados en tokens",
+          "desc": "25 overrides de componentes leen tokens semánticos. No hace falta sx para ser consistente."
+        }
+      ]
+    },
+    "pricing": {
+      "title": "Precios",
+      "subtitle": "Es gratis. Forkealo, marcalo con tu marca, lanzalo.",
+      "success": "Todas las funcionalidades incluidas — sin plan pago.",
+      "info": "Se aceptan contribuciones en GitHub.",
+      "warning": "Se aceptan contribuciones en GitHub.",
+      "error": "Se aceptan contribuciones en GitHub."
+    },
+    "contact": {
+      "title": "Contacto",
+      "subtitle": "¿Preguntas? Escribinos y te respondemos.",
+      "name": "Nombre",
+      "email": "Email",
+      "message": "Mensaje",
+      "send": "Enviar mensaje"
+    }
+  }
+}
