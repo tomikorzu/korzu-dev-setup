@@ -47,7 +47,7 @@ export default function Navbar() {
 
         <Stack direction="row" spacing={1} sx={{ flexGrow: 1 }}>
           {NAV_LINKS.map((link) => (
-            <Button key={link.href} variant="nav" href={link.href} size="small">
+            <Button key={link.href} href={link.href} variant="nav" size="small">
               {link.label}
             </Button>
           ))}

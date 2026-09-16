@@ -1,8 +1,19 @@
 "use client";
 
-import { useState, type MouseEvent } from "react";
-import { IconButton, Popover, ToggleButtonGroup, ToggleButton, Stack, Typography } from "@mui/material";
-import { LightModeOutlined, DarkModeOutlined, SettingsBrightnessOutlined } from "@mui/icons-material";
+import {
+  DarkModeOutlined,
+  LightModeOutlined,
+  SettingsBrightnessOutlined,
+} from "@mui/icons-material";
+import {
+  IconButton,
+  Popover,
+  Stack,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+} from "@mui/material";
+import { type MouseEvent, useState } from "react";
 import { useColorMode } from "../../hooks/useColorMode";
 
 enum Mode {
@@ -63,10 +74,7 @@ const ThemeToggle: React.FC = () => {
               Light
             </ToggleButton>
             <ToggleButton value={Mode.SYSTEM}>
-              <SettingsBrightnessOutlined
-                fontSize="small"
-                sx={{ mr: 0.5 }}
-              />
+              <SettingsBrightnessOutlined fontSize="small" sx={{ mr: 0.5 }} />
               Auto
             </ToggleButton>
             <ToggleButton value={Mode.DARK}>

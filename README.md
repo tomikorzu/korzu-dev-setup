@@ -1,34 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Korzu
 
-## Getting Started
+A reusable Next.js starter: MUI theming (light/dark, one-file rebranding), GSAP, forms
+(react-hook-form + zod), data fetching (TanStack Query), CMS clients (WordPress/Strapi), SEO,
+testing, and CI wired up from day one.
 
-First, run the development server:
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.example .env    # fill in the CMS vars you actually use
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command | What it does |
+|---|---|
+| `pnpm dev` | Start the dev server |
+| `pnpm build` | Production build |
+| `pnpm test` | Run the test suite (Vitest) |
+| `pnpm test:watch` | Tests in watch mode |
+| `pnpm lint` | Biome lint + format check |
+| `pnpm typecheck` | `tsc --noEmit` |
 
-## Learn More
+A pre-commit hook (Husky + lint-staged) runs Biome on staged files automatically.
 
-To learn more about Next.js, take a look at the following resources:
+## Starting a new project from this starter
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Almost everything lives in one of two config files:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [src/theme/project.config.ts](src/theme/project.config.ts) — brand colors (exact client hex),
+  fonts, radius, default color scheme. See [src/theme/README.md](src/theme/README.md).
+- [src/site.config.ts](src/site.config.ts) — site name, URL, description used across metadata,
+  the sitemap, and the OG image.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Everything else — components, tokens, dark mode, SEO tags — derives from those two files. See
+[src/modules/README.md](src/modules/README.md) for the component/shared-code conventions, and
+`.claude/skills/` for the full set of project rules.

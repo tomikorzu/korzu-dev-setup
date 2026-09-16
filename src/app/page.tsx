@@ -1,5 +1,6 @@
 "use client";
 
+import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -9,7 +10,21 @@ import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import Alert from "@mui/material/Alert";
+
+const FEATURES = [
+  {
+    title: "One-file rebranding",
+    desc: "Change project.config.ts and every button, surface, and nav color updates automatically.",
+  },
+  {
+    title: "Dark & Light mode",
+    desc: "CSS variables-based switching with zero flash. Respects device preference.",
+  },
+  {
+    title: "Token-driven components",
+    desc: "25 component overrides read semantic tokens. No sx needed for consistency.",
+  },
+];
 
 export default function Home() {
   return (
@@ -66,33 +81,17 @@ export default function Home() {
             Everything you need to ship consistent, themeable apps at speed.
           </Typography>
 
-          <Stack
-            direction={{ xs: "column", md: "row" }}
-            spacing={3}
-          >
-            {[
-              {
-                title: "One-file rebranding",
-                desc: "Change brand.ts and every button, surface, and nav color updates automatically.",
-              },
-              {
-                title: "Dark & Light mode",
-                desc: "CSS variables-based switching with zero flash. Respects device preference.",
-              },
-              {
-                title: "Token-driven components",
-                desc: "25 component overrides read semantic tokens. No sx needed for consistency.",
-              },
-            ].map((f) => (
-              <Card key={f.title} variant="outlined"
+          <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
+            {FEATURES.map((f) => (
+              <Card
+                key={f.title}
+                variant="outlined"
                 sx={{ bgcolor: "surface.container.highest", p: 4, flex: 1 }}
               >
                 <Typography variant="h6" fontWeight={600} gutterBottom>
                   {f.title}
                 </Typography>
-                <Typography variant="body2">
-                  {f.desc}
-                </Typography>
+                <Typography variant="body2">{f.desc}</Typography>
               </Card>
             ))}
           </Stack>
@@ -115,15 +114,9 @@ export default function Home() {
             <Alert severity="success">
               All features included — no paid tier.
             </Alert>
-            <Alert severity="info">
-              Contributions welcome on GitHub.
-            </Alert>
-            <Alert severity="warning">
-              Contributions welcome on GitHub.
-            </Alert>
-            <Alert severity="error">
-              Contributions welcome on GitHub.
-            </Alert>
+            <Alert severity="info">Contributions welcome on GitHub.</Alert>
+            <Alert severity="warning">Contributions welcome on GitHub.</Alert>
+            <Alert severity="error">Contributions welcome on GitHub.</Alert>
           </Stack>
         </Container>
       </Box>
@@ -141,11 +134,7 @@ export default function Home() {
           >
             Contact
           </Typography>
-          <Typography
-            color="text.secondary"
-            textAlign="center"
-            sx={{ mb: 5 }}
-          >
+          <Typography color="text.secondary" textAlign="center" sx={{ mb: 5 }}>
             Questions? Reach out and we&apos;ll get back to you.
           </Typography>
 
