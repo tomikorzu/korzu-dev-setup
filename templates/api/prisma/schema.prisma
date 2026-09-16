@@ -1,0 +1,18 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// One example resource, wired end-to-end (service + REST controller or GraphQL resolver).
+// Model your own resources the same way — add a migration via `prisma migrate dev`, never
+// hand-edit a committed migration file.
+model Item {
+  id        String   @id @default(uuid())
+  title     String
+  done      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

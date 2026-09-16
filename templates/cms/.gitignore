@@ -1,0 +1,21 @@
+/node_modules
+/build
+/dist
+/.cache
+/.tmp
+/coverage
+*.tsbuildinfo
+
+.env
+!.env.example
+
+# Strapi generates these at develop/build time
+/src/admin/components
+/types/generated
+/.strapi
+.strapi-updater.json
+license.txt
+
+.DS_Store
+npm-debug.log*
+.pnpm-debug.log*

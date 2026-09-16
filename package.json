@@ -1,54 +1,84 @@
 {
-  "name": "korzu-dev-setup",
+  "name": "create-korzu-app",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "type": "module",
+  "description": "Scaffold a Next.js/MUI frontend, NestJS backend, Expo mobile app, and/or Strapi CMS — standalone or as a Turborepo monorepo.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomikorzu/korzu-dev-setup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tomikorzu/korzu-dev-setup/issues"
+  },
+  "homepage": "https://github.com/tomikorzu/korzu-dev-setup#readme",
+  "keywords": [
+    "cli",
+    "scaffold",
+    "create-app",
+    "nextjs",
+    "nestjs",
+    "expo",
+    "strapi",
+    "turborepo"
+  ],
+  "bin": {
+    "create-korzu-app": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "templates",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.18"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "tsx src/cli.ts",
+    "build": "tsup",
     "lint": "biome check",
     "format": "biome format --write",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm build",
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css}": [
+    "src/**/*.{ts,json}": [
       "biome check --write --no-errors-on-unmatched"
+    ],
+    "templates/web/**/*.{ts,tsx,json,css}": [
+      "biome check --write --no-errors-on-unmatched --config-path=templates/web/biome.json"
+    ],
+    "templates/api/**/*.{ts,json}": [
+      "biome check --write --no-errors-on-unmatched --config-path=templates/api/biome.json"
+    ],
+    "templates/mobile/**/*.{ts,tsx,json}": [
+      "biome check --write --no-errors-on-unmatched --config-path=templates/mobile/biome.json"
+    ],
+    "templates/cms/**/*.{ts,tsx,json}": [
+      "biome check --write --no-errors-on-unmatched --config-path=templates/cms/biome.json"
     ]
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@gsap/react": "^2.1.2",
-    "@hookform/resolvers": "^5.9.1",
-    "@mui/icons-material": "^7.3.9",
-    "@mui/material": "^7.3.9",
-    "@mui/material-nextjs": "^9.4.0",
-    "@tanstack/react-query": "^5.102.8",
-    "gsap": "^3.15.0",
-    "next": "16.2.1",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "react-hook-form": "^7.88.0",
-    "zod": "^4.6.5",
-    "zustand": "^5.0.15"
+    "@clack/prompts": "^1.8.1",
+    "picocolors": "^1.1.1",
+    "validate-npm-package-name": "^6.0.2"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
-    "@testing-library/jest-dom": "^7.0.1",
-    "@testing-library/react": "^16.3.3",
-    "@testing-library/user-event": "^14.6.7",
     "@types/node": "^22.20.3",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@vitejs/plugin-react": "^6.1.1",
-    "babel-plugin-react-compiler": "1.0.0",
+    "@types/validate-npm-package-name": "^4.0.2",
     "husky": "^9.1.7",
-    "jsdom": "^30.0.1",
     "lint-staged": "^17.5.1",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.6",
     "typescript": "^5",
     "vitest": "^5.0.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
   }
 }

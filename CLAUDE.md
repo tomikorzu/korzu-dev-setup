@@ -1,69 +1,54 @@
-# korzu-dev-setup
+# create-korzu-app
 
-Reusable Next.js + MUI + GSAP starter kit. The goal is to publish this to npm so new
-projects boot up with the theme, shared components, and conventions already in place —
-treat everything here as library code, not a one-off app.
+This repo is a scaffolding CLI (`npx create-korzu-app`), not an app. `src/` is the CLI's own
+code; `templates/*` are the projects it scaffolds — each one is a real, independently runnable
+project with its own conventions, `CLAUDE.md`, and `.claude/skills/`.
 
-## Core rules
+## Working on the CLI itself (`src/`)
 
-- **Props over `sx`.** Always prefer a component's own props (`color`, `size`, `variant`, ...)
-  over `sx`. A repeated or meaningful style becomes a MUI theme `variant` in
-  `src/theme/components/`, not inline styles. See the `mui-variants-no-sx` skill.
-- **Reuse before building.** Check `src/modules/shared/{components,hooks,utils}` before writing
-  anything new. Anything usable outside one feature belongs in `shared`. See the
-  `reuse-shared-components` skill.
-- **Minimal code.** Write only as much as the task needs — readable, no speculative
-  abstractions, no unused config for cases that don't exist yet.
-- **Comments:** English only, and only when something is genuinely non-obvious. Keep them
-  short and clear.
-- **Theme:** never hardcode a color (or spacing/radius/shadow). Everything comes from
-  `src/theme` tokens, derived from the single `project.config.ts` entry point (brand colors are
-  exact client hex via `generateColorScale()`), with full light/dark support. Use
-  `theme.vars.palette.*`, never `theme.palette.*`, for colors inside `styleOverrides`/variant
-  callbacks — `.palette` is static and won't switch with dark/light mode. Never override `body`
-  background/color in `CssBaseline`; MUI's CSS variables handle that. See the
-  `theme-tokens-no-hardcoded-colors` skill.
-- **Typography:** `src/theme/typography.ts` is fixed across every project (headings scale
-  fluidly mobile→desktop via `fluidType()`, body/UI text stays fixed). Always use `Typography`
-  variants, never a hardcoded font size. See the `typography-variants` skill.
-- **Next.js:** Server Components by default, `"use client"` only when needed (state, effects,
-  GSAP). Pages stay thin and compose shared components. See the `nextjs-patterns` skill.
-- **Animations:** GSAP only, scoped with `useGSAP` in client components. See the
-  `gsap-animations` skill.
-- **Forms:** `react-hook-form` + `zod`, wired through existing shared inputs via `Controller`.
-  See the `forms-rhf-zod` skill.
-- **Data fetching:** `@tanstack/react-query` for anything client-side (`QueryProvider` already
-  mounted in `App.provider.tsx`). See the `tanstack-query-data` skill.
-- **CMS:** `createWordPressClient`/`createStrapiClient`
-  (`src/modules/shared/utils/{wordpress,strapi}.util.ts`) return normalized, typed data — never
-  fetch a CMS REST endpoint by hand.
-- **Client state:** Zustand, only for state shared across components with no common parent
-  (`src/modules/shared/stores/`). Server data stays in TanStack Query. See the
-  `client-state-zustand` skill.
-- **SEO:** every page exports `metadata` via `createMetadata()`
-  (`src/modules/shared/utils/seo.util.ts`); site identity lives in `src/site.config.ts`. See the
-  `seo-metadata` skill.
-- **Bilingual copy:** if a project only needs EN/ES with no localized routes, use
-  `useTranslations()` + inline `t(en, es)` pairs and `ToggleLanguageFab` (already wired via
-  `LanguageProvider`) — not `next-intl`/routed locales. See the `bilingual-toggle` skill.
-- **Env vars:** validated and typed in `src/env.ts` (zod) — add new vars there, import `env` from
-  it, never read `process.env` directly in app code.
-- **Testing:** Vitest + Testing Library, colocated `*.test.ts(x)` files, `renderWithTheme` from
-  `@/test/render` for components. See the `testing-vitest` skill.
-- **CI/hooks:** GitHub Actions (`.github/workflows/ci.yml`) runs lint, typecheck, test, and build
-  on every PR. Husky + lint-staged run Biome on staged files before each commit.
+- **Minimal code.** No templating engine, no dependency-injection framework — plain `fs`
+  recursive copy + a small `{{TOKEN}}` string-substitution pass for `.tmpl`-suffixed files.
+  `resolveDependencies.ts` is the one place conditional inclusion logic lives (MobX-on-GraphQL,
+  which `packages/*` to generate) — keep it a pure function, easy to unit test.
+- **A layer only appears in prompts once its template exists** — see `AVAILABLE_LAYERS` in
+  `src/types.ts`. Don't offer a layer the generators can't actually produce yet.
+- **Exactly one layer selected → standalone** (`scaffoldStandalone.ts`, no `apps/`/turbo files at
+  all). **Two or more → monorepo** (`scaffoldMonorepo.ts`, Turborepo + pnpm-workspaces). Don't
+  blur this — a single-layer scaffold should never carry monorepo scaffolding cruft.
+- **Non-interactive flags (`--yes --name= --frontend ...`) are not an afterthought** — the CI
+  `e2e-scaffold` job depends on them working, and so does anyone scripting this tool.
+- Tests: Vitest, colocated `*.test.ts`. `copyTemplate.test.ts` is the pattern for testing file
+  operations — use `mkdtemp`/`os.tmpdir()`, clean up in `afterEach`.
 
-## Skills
+## Working on a template (`templates/<name>/`)
 
-- `mui-variants-no-sx` — styling components via props/theme variants instead of `sx`
-- `reuse-shared-components` — where new code should live
-- `nextjs-patterns` — App Router conventions for this starter
-- `gsap-animations` — animating with GSAP in this stack
-- `forms-rhf-zod` — building forms with react-hook-form + zod
-- `tanstack-query-data` — fetching/caching/mutating server data
-- `theme-tokens-no-hardcoded-colors` — colors/spacing/radius always via tokens, never hardcoded
-- `typography-variants` — fixed, responsive type scale; always use `Typography` variants
-- `client-state-zustand` — when (and when not) to reach for a global store
-- `bilingual-toggle` — EN/ES via inline `t(en, es)`, no routing, for two-language projects
-- `seo-metadata` — metadata/sitemap/robots/OG image helpers
-- `testing-vitest` — writing tests with Vitest + Testing Library
+- Each template is self-contained: its own `package.json`, its own `CLAUDE.md` +
+  `.claude/skills/`, its own lint/test/build tooling. Treat it as a real project you can `cd`
+  into and run — because a scaffolded copy of it *is* exactly that.
+- `templates/web/package.json`'s `"name"` field is a placeholder (`korzu-web-template`) —
+  the CLI's `setPackageName()` rewrites it at scaffold time. Don't hand-template that field with
+  `{{PROJECT_NAME}}`; the JSON string-replace approach is fragile for the one field every
+  scaffold needs, so it gets a real post-copy rewrite instead.
+- A template's own `biome.json`/test config/CI job lints, typechecks, tests, and builds *that
+  template*, independent of the CLI's own `biome.json` (which only covers `src/`). `templates/api`
+  and `templates/mobile` use Jest, not Vitest — a deliberate, documented exception in each one's
+  own `CLAUDE.md` (NestJS's DI tooling and React Native's `jest-expo` preset both assume Jest).
+  `templates/cms` has no automated test suite at all — see its own `CLAUDE.md` for why.
+- Every template gets its own `pnpm-workspace.yaml` (`packages: ["."]`) so it can `pnpm install`
+  standalone without being absorbed into this repo's own workspace. `copyTemplateDir` strips
+  that file by default (`LAYER_TEMPLATE_SKIP_ENTRIES`) — it must never reach a scaffolded output.
+- In monorepo mode, `removeAppStandaloneConfig()` strips each app's own `.husky/`+`"prepare"`
+  script and any root-only `pnpm.*` config (e.g. `onlyBuiltDependencies`) after copying it into
+  `apps/<name>/` — only the monorepo root owns those there. This is
+  handled once, generically, in `scaffoldMonorepo.ts` — a new template doesn't need to do
+  anything special for this to work.
+- See `.claude/skills/template-authoring` for the full pattern (variants, `_variants/` overlays,
+  the mobx-on-graphql conditional file in `templates/web/_variants/mobx/`, the
+  REST-base/GraphQL-overlay pattern in `templates/api` and `packages/api-client`).
+
+## CI
+
+`.github/workflows/ci.yml` has one job per surface: `cli` (lints/tests/builds `src/`),
+`e2e-scaffold` (runs the built CLI non-interactively and verifies the output actually
+installs/builds), and one `template-<name>` job per template. Adding a template means adding its
+own CI job, not extending an existing one.

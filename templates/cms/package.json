@@ -1,0 +1,53 @@
+{
+  "name": "korzu-cms-template",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "strapi build",
+    "dev": "strapi develop",
+    "start": "strapi start",
+    "lint": "biome check",
+    "format": "biome format --write",
+    "typecheck": "tsc --noEmit",
+    "strapi": "strapi",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,json}": [
+      "biome check --write --no-errors-on-unmatched"
+    ]
+  },
+  "dependencies": {
+    "@strapi/plugin-cloud": "5.54.0",
+    "@strapi/plugin-users-permissions": "5.54.0",
+    "@strapi/strapi": "5.54.0",
+    "pg": "8.23.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.30.3",
+    "styled-components": "6.5.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.0",
+    "@strapi/typescript-utils": "5.54.0",
+    "@types/node": "22.20.3",
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "husky": "9.1.7",
+    "lint-staged": "17.5.1",
+    "typescript": "5.7.3"
+  },
+  "engines": {
+    "node": ">=20.0.0 <=26.x.x"
+  },
+  "strapi": {
+    "uuid": false
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "core-js-pure",
+      "esbuild"
+    ]
+  }
+}

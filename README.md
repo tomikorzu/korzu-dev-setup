@@ -1,39 +1,60 @@
-# Korzu
+# create-korzu-app
 
-A reusable Next.js starter: MUI theming (light/dark, one-file rebranding), GSAP, forms
-(react-hook-form + zod), data fetching (TanStack Query), CMS clients (WordPress/Strapi), SEO,
-testing, and CI wired up from day one.
+Scaffold a new project from a menu:
 
-## Getting started
+- **Frontend** — Next.js + MUI + GSAP, with token-driven theming, Zustand + TanStack Query,
+  forms, SEO, testing and CI already wired up.
+- **Backend** — NestJS + Prisma + PostgreSQL, REST or GraphQL (your choice at scaffold time).
+- **Mobile** — Expo + NativeWind.
+- **CMS** — Strapi, version-pinned.
+
+Picking **Frontend + Backend with GraphQL** adds MobX to the frontend, for modeling client-side
+domain state on top of GraphQL query results — Zustand still owns plain UI state either way.
+
+Pick exactly one and it's scaffolded standalone. Pick two or more and you get a
+Turborepo + pnpm-workspaces monorepo (`apps/*`, `packages/*`) instead — that's when code
+actually needs sharing (typed API client, shared types). UI components are never shared between
+web and mobile; MUI and React Native are different enough that it isn't worth forcing.
+
+## Usage
+
+```bash
+npx create-korzu-app
+```
+
+Or non-interactively (useful for CI/scripts):
+
+```bash
+npx create-korzu-app --yes --name=my-app --frontend
+```
+
+Flags: `--name`, `--dir`, `--frontend`, `--backend=rest|graphql`, `--mobile`, `--cms`,
+`--no-install`, `--no-git`.
+
+## Repo layout
+
+This repo is the CLI's own source, not an app:
+
+```
+src/            the CLI itself — prompts, file-copy/substitution, standalone vs monorepo generators
+templates/      what actually gets scaffolded, one folder per layer (each fully runnable on its own)
+  web/          the Frontend template — cd in, pnpm install, pnpm dev, just like any Next.js app
+  api/          the Backend template — cd in, docker compose up -d, pnpm install, pnpm dev
+  mobile/       the Mobile template — cd in, pnpm install, pnpm dev, just like any Expo app
+  cms/          the CMS template — cd in, docker compose up -d, pnpm install, pnpm dev
+  _monorepo-root/  turbo.json/pnpm-workspace.yaml + packages/{types,api-client}, used when 2+ layers are picked
+```
+
+See `.claude/skills/template-authoring` for how to add or edit a template.
+
+## Developing the CLI
 
 ```bash
 pnpm install
-cp .env.example .env    # fill in the CMS vars you actually use
-pnpm dev
+pnpm dev -- --yes --name=demo --frontend --no-install   # runs the CLI from source via tsx
+pnpm test
+pnpm build                                                # bundles to dist/cli.js
 ```
 
-## Scripts
-
-| Command | What it does |
-|---|---|
-| `pnpm dev` | Start the dev server |
-| `pnpm build` | Production build |
-| `pnpm test` | Run the test suite (Vitest) |
-| `pnpm test:watch` | Tests in watch mode |
-| `pnpm lint` | Biome lint + format check |
-| `pnpm typecheck` | `tsc --noEmit` |
-
-A pre-commit hook (Husky + lint-staged) runs Biome on staged files automatically.
-
-## Starting a new project from this starter
-
-Almost everything lives in one of two config files:
-
-- [src/theme/project.config.ts](src/theme/project.config.ts) — brand colors (exact client hex),
-  fonts, radius, default color scheme. See [src/theme/README.md](src/theme/README.md).
-- [src/site.config.ts](src/site.config.ts) — site name, URL, description used across metadata,
-  the sitemap, and the OG image.
-
-Everything else — components, tokens, dark mode, SEO tags — derives from those two files. See
-[src/modules/README.md](src/modules/README.md) for the component/shared-code conventions, and
-`.claude/skills/` for the full set of project rules.
+To work on the Frontend template itself, treat `templates/web` as its own project:
+`cd templates/web && pnpm install && pnpm dev`.

@@ -1,0 +1,12 @@
+# {{PROJECT_NAME}}
+
+A Turborepo + pnpm-workspaces monorepo, scaffolded by `create-korzu-app`.
+
+```bash
+pnpm install
+pnpm dev      # runs `dev` in every app, via Turborepo
+pnpm build    # builds every app + package, in dependency order
+```
+
+Each app under `apps/*` is a complete project on its own — see its own `README.md`/`CLAUDE.md`
+for how to work on it specifically. Shared code lives under `packages/*`.
