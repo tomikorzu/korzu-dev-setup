@@ -24,7 +24,7 @@
     "turborepo"
   ],
   "bin": {
-    "create-korzu-app": "./dist/cli.js"
+    "create-korzu-app": "dist/cli.js"
   },
   "files": [
     "dist",
@@ -79,6 +79,8 @@
     "vitest": "^5.0.1"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }

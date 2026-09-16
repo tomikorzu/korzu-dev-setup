@@ -58,3 +58,21 @@ pnpm build                                                # bundles to dist/cli.
 
 To work on the Frontend template itself, treat `templates/web` as its own project:
 `cd templates/web && pnpm install && pnpm dev`.
+
+## Publishing a new version
+
+```bash
+pnpm lint && pnpm typecheck && pnpm test && pnpm build   # verify everything first
+
+npm version patch   # 0.1.0 -> 0.1.1 — fixes, small tweaks
+npm version minor   # 0.1.0 -> 0.2.0 — new functionality (e.g. a new template, a new flag)
+npm version major   # 0.1.0 -> 1.0.0 — breaking changes
+
+npm publish --otp=123456   # your real 2FA code from your authenticator app
+
+git push && git push --tags
+```
+
+`npm version` bumps `package.json`, commits, and tags in one step. `prepublishOnly` already runs
+`pnpm build`, so `dist/cli.js` is always rebuilt before publishing. Verify with:
+`npm view create-korzu-app version`.
