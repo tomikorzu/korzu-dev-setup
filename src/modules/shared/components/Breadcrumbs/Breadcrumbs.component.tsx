@@ -1,8 +1,12 @@
-import { Breadcrumbs as MuiBreadcrumbs, Link, Stack, Typography } from "@mui/material";
+import type * as icons from "@mui/icons-material";
 import { NavigateNext } from "@mui/icons-material";
-import * as icons from "@mui/icons-material";
+import {
+  Link,
+  Breadcrumbs as MuiBreadcrumbs,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { getIconByString } from "../../utils/getIconByString.util";
-import NextLink from "next/link";
 
 export interface BreadcrumbItem {
   label: string;
@@ -39,17 +43,22 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
 
         if (isLast || !item.href) {
           return (
-            <Typography
+            <Stack
               key={item.label}
-              variant="body2"
-              color={isLast ? "text.primary" : "text.secondary"}
-              fontWeight={isLast ? 600 : 400}
+              direction="row"
+              alignItems="center"
+              gap={0.5}
             >
-              <Stack direction="row" alignItems="center" gap={0.5}>
-                {Icon && <Icon sx={{ fontSize: 14 }} />}
+              {Icon && <Icon sx={{ fontSize: 14 }} />}
+              <Typography
+                variant="body2"
+                component="span"
+                color={isLast ? "text.primary" : "text.secondary"}
+                fontWeight={isLast ? 600 : 400}
+              >
                 {item.label}
-              </Stack>
-            </Typography>
+              </Typography>
+            </Stack>
           );
         }
 
@@ -61,9 +70,12 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
             variant="body2"
             color={isLast ? "text.primary" : "text.secondary"}
             fontWeight={isLast ? 600 : 400}
-            sx={{ '&:hover': { color: "brand.primary.enabled" } }}
+            sx={{ "&:hover": { color: "brand.primary.enabled" } }}
           >
-            <Stack direction="row" alignItems="center" gap={1}> {Icon && <Icon sx={{ fontSize: 14 }} />} {item.label}</Stack>
+            <Stack direction="row" alignItems="center" gap={1}>
+              {" "}
+              {Icon && <Icon sx={{ fontSize: 14 }} />} {item.label}
+            </Stack>
           </Link>
         );
       })}

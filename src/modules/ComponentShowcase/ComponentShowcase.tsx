@@ -1,6 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import DevicesIcon from "@mui/icons-material/Devices";
+import FormatBoldIcon from "@mui/icons-material/FormatBold";
+import FormatItalicIcon from "@mui/icons-material/FormatItalic";
+import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
+import GridViewIcon from "@mui/icons-material/GridView";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
+import ShowChartIcon from "@mui/icons-material/ShowChart";
+import ViewListIcon from "@mui/icons-material/ViewList";
+import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -9,80 +21,65 @@ import Container from "@mui/material/Container";
 import MuiDivider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import DevicesIcon from "@mui/icons-material/Devices";
-import ShowChartIcon from "@mui/icons-material/ShowChart";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import FormatBoldIcon from "@mui/icons-material/FormatBold";
-import FormatItalicIcon from "@mui/icons-material/FormatItalic";
-import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
-import ViewListIcon from "@mui/icons-material/ViewList";
-import ViewModuleIcon from "@mui/icons-material/ViewModule";
-import GridViewIcon from "@mui/icons-material/GridView";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-
+import { useState } from "react";
+import Accordion from "@/modules/shared/components/Accordion/Accordion.component";
 // ── Original components ────────────────────────────
 import AsideMenu from "@/modules/shared/components/AsideMenu/AsideMenu";
-import SectionHeading from "@/modules/shared/components/SectionHeading/SectionHeading";
-import Breadcrumbs from "@/modules/shared/components/Breadcrumbs/Breadcrumbs.component";
-import Pagination from "@/modules/shared/components/Pagination/Pagination";
-import DataTable from "@/modules/shared/components/DataTable/DataTable";
-import type { DataTableColumn } from "@/modules/shared/components/DataTable/DataTable";
-import StatCard from "@/modules/shared/components/StatCard/StatCard";
-import Timeline from "@/modules/shared/components/Timeline/Timeline";
 import AvatarGroup from "@/modules/shared/components/AvatarGroup/AvatarGroup";
-import ConfirmDialog from "@/modules/shared/components/ConfirmDialog/ConfirmDialog";
-import InfoDrawer from "@/modules/shared/components/InfoDrawer/InfoDrawer";
-import Toast from "@/modules/shared/components/Toast/Toast";
-import EmptyState from "@/modules/shared/components/EmptyState/EmptyState.component";
-import ChatThread from "@/modules/shared/components/ChatThread/ChatThread";
-import ChatInput from "@/modules/shared/components/ChatInput/ChatInput";
-import SearchInput from "@/modules/shared/components/SearchInput/SearchInput";
-import TagInput from "@/modules/shared/components/TagInput/TagInput";
-import Carousel from "@/modules/shared/components/Carousel/Carousel";
-
 // ── New variant components ─────────────────────────
 import Badge from "@/modules/shared/components/Badge/Badge.component";
-import ProgressBar from "@/modules/shared/components/ProgressBar/ProgressBar.component";
-import Accordion from "@/modules/shared/components/Accordion/Accordion.component";
-import TabGroup from "@/modules/shared/components/TabGroup/TabGroup.component";
-import KBD from "@/modules/shared/components/KBD/KBD.component";
-import CodeBlock from "@/modules/shared/components/CodeBlock/CodeBlock.component";
 import Banner from "@/modules/shared/components/Banner/Banner.component";
-import Rating from "@/modules/shared/components/Rating/Rating.component";
-import Stepper from "@/modules/shared/components/Stepper/Stepper.component";
-import DropdownMenu from "@/modules/shared/components/DropdownMenu/DropdownMenu.component";
-import FileUpload from "@/modules/shared/components/FileUpload/FileUpload.component";
-import StatusDot from "@/modules/shared/components/StatusDot/StatusDot.component";
-import UserCard from "@/modules/shared/components/UserCard/UserCard.component";
-import PricingCard from "@/modules/shared/components/PricingCard/PricingCard.component";
-import NotificationCard from "@/modules/shared/components/NotificationCard/NotificationCard.component";
-import MetricBar from "@/modules/shared/components/MetricBar/MetricBar.component";
-import PasswordInput from "@/modules/shared/components/PasswordInput/PasswordInput.component";
-import ToggleGroup from "@/modules/shared/components/ToggleGroup/ToggleGroup.component";
-import Divider from "@/modules/shared/components/Divider/Divider.component";
+import Breadcrumbs from "@/modules/shared/components/Breadcrumbs/Breadcrumbs.component";
+import Carousel from "@/modules/shared/components/Carousel/Carousel";
+import ChatInput from "@/modules/shared/components/ChatInput/ChatInput";
+import ChatThread from "@/modules/shared/components/ChatThread/ChatThread";
+import CodeBlock from "@/modules/shared/components/CodeBlock/CodeBlock.component";
 import CommandPalette from "@/modules/shared/components/CommandPalette/CommandPalette.component";
-
+import ConfirmDialog from "@/modules/shared/components/ConfirmDialog/ConfirmDialog";
+import type { DataTableColumn } from "@/modules/shared/components/DataTable/DataTable";
+import DataTable from "@/modules/shared/components/DataTable/DataTable";
+import Divider from "@/modules/shared/components/Divider/Divider.component";
+import DropdownMenu from "@/modules/shared/components/DropdownMenu/DropdownMenu.component";
+import EmptyState from "@/modules/shared/components/EmptyState/EmptyState.component";
+import FileUpload from "@/modules/shared/components/FileUpload/FileUpload.component";
+import InfoDrawer from "@/modules/shared/components/InfoDrawer/InfoDrawer";
+import KBD from "@/modules/shared/components/KBD/KBD.component";
+import MetricBar from "@/modules/shared/components/MetricBar/MetricBar.component";
+import NotificationCard from "@/modules/shared/components/NotificationCard/NotificationCard.component";
+import Pagination from "@/modules/shared/components/Pagination/Pagination";
+import PasswordInput from "@/modules/shared/components/PasswordInput/PasswordInput.component";
+import PricingCard from "@/modules/shared/components/PricingCard/PricingCard.component";
+import ProgressBar from "@/modules/shared/components/ProgressBar/ProgressBar.component";
+import Rating from "@/modules/shared/components/Rating/Rating.component";
+import SearchInput from "@/modules/shared/components/SearchInput/SearchInput";
+import SectionHeading from "@/modules/shared/components/SectionHeading/SectionHeading";
+import StatCard from "@/modules/shared/components/StatCard/StatCard";
+import StatusDot from "@/modules/shared/components/StatusDot/StatusDot.component";
+import Stepper from "@/modules/shared/components/Stepper/Stepper.component";
+import TabGroup from "@/modules/shared/components/TabGroup/TabGroup.component";
+import TagInput from "@/modules/shared/components/TagInput/TagInput";
+import Timeline from "@/modules/shared/components/Timeline/Timeline";
+import Toast from "@/modules/shared/components/Toast/Toast";
+import ToggleGroup from "@/modules/shared/components/ToggleGroup/ToggleGroup.component";
+import UserCard from "@/modules/shared/components/UserCard/UserCard.component";
+import { SHOWCASE_SECTIONS } from "@/modules/shared/constants/showcase";
 // ── Hooks & constants ──────────────────────────────
 import { useActiveSection } from "@/modules/shared/hooks/useActiveSection";
-import { SHOWCASE_SECTIONS } from "@/modules/shared/constants/showcase";
 
 import {
-  MOCK_USERS,
-  MOCK_STATS,
-  MOCK_MESSAGES,
-  MOCK_TIMELINE,
-  MOCK_BREADCRUMBS,
-  MOCK_AVATARS,
   CAROUSEL_SLIDES,
-  MOCK_STEPPER_STEPS,
   MOCK_ACCORDION_ITEMS,
-  MOCK_PRICING_PLANS,
-  MOCK_NOTIFICATIONS,
+  MOCK_AVATARS,
+  MOCK_BREADCRUMBS,
   MOCK_COMMANDS,
   MOCK_DROPDOWN_ITEMS,
+  MOCK_MESSAGES,
+  MOCK_NOTIFICATIONS,
+  MOCK_PRICING_PLANS,
+  MOCK_STATS,
+  MOCK_STEPPER_STEPS,
+  MOCK_TIMELINE,
+  MOCK_USERS,
   type MockUser,
 } from "./showcase.constants";
 
@@ -327,38 +324,122 @@ export default function ComponentShowcase() {
               </DemoCard>
 
               <DemoCard title="TabGroup Variants">
-                <Typography variant="caption" color="text.tertiary" sx={{ mb: 2, display: "block" }}>
+                <Typography
+                  variant="caption"
+                  color="text.tertiary"
+                  sx={{ mb: 2, display: "block" }}
+                >
                   Underline
                 </Typography>
                 <TabGroup
                   tabs={[
-                    { id: "overview", label: "Overview", content: <Typography variant="body2" color="text.secondary">Overview content goes here.</Typography> },
-                    { id: "analytics", label: "Analytics", content: <Typography variant="body2" color="text.secondary">Analytics dashboard content.</Typography> },
-                    { id: "settings", label: "Settings", content: <Typography variant="body2" color="text.secondary">Settings panel content.</Typography> },
+                    {
+                      id: "overview",
+                      label: "Overview",
+                      content: (
+                        <Typography variant="body2" color="text.secondary">
+                          Overview content goes here.
+                        </Typography>
+                      ),
+                    },
+                    {
+                      id: "analytics",
+                      label: "Analytics",
+                      content: (
+                        <Typography variant="body2" color="text.secondary">
+                          Analytics dashboard content.
+                        </Typography>
+                      ),
+                    },
+                    {
+                      id: "settings",
+                      label: "Settings",
+                      content: (
+                        <Typography variant="body2" color="text.secondary">
+                          Settings panel content.
+                        </Typography>
+                      ),
+                    },
                   ]}
                   variant="underline"
                 />
                 <MuiDivider sx={{ my: 4 }} />
-                <Typography variant="caption" color="text.tertiary" sx={{ mb: 2, display: "block" }}>
+                <Typography
+                  variant="caption"
+                  color="text.tertiary"
+                  sx={{ mb: 2, display: "block" }}
+                >
                   Pills
                 </Typography>
                 <TabGroup
                   tabs={[
-                    { id: "all", label: "All", content: <Typography variant="body2" color="text.secondary">Showing all items.</Typography> },
-                    { id: "active", label: "Active", content: <Typography variant="body2" color="text.secondary">Showing active items.</Typography> },
-                    { id: "archived", label: "Archived", content: <Typography variant="body2" color="text.secondary">Showing archived items.</Typography> },
+                    {
+                      id: "all",
+                      label: "All",
+                      content: (
+                        <Typography variant="body2" color="text.secondary">
+                          Showing all items.
+                        </Typography>
+                      ),
+                    },
+                    {
+                      id: "active",
+                      label: "Active",
+                      content: (
+                        <Typography variant="body2" color="text.secondary">
+                          Showing active items.
+                        </Typography>
+                      ),
+                    },
+                    {
+                      id: "archived",
+                      label: "Archived",
+                      content: (
+                        <Typography variant="body2" color="text.secondary">
+                          Showing archived items.
+                        </Typography>
+                      ),
+                    },
                   ]}
                   variant="pills"
                 />
                 <MuiDivider sx={{ my: 4 }} />
-                <Typography variant="caption" color="text.tertiary" sx={{ mb: 2, display: "block" }}>
+                <Typography
+                  variant="caption"
+                  color="text.tertiary"
+                  sx={{ mb: 2, display: "block" }}
+                >
                   Contained
                 </Typography>
                 <TabGroup
                   tabs={[
-                    { id: "day", label: "Day", content: <Typography variant="body2" color="text.secondary">Day view.</Typography> },
-                    { id: "week", label: "Week", content: <Typography variant="body2" color="text.secondary">Week view.</Typography> },
-                    { id: "month", label: "Month", content: <Typography variant="body2" color="text.secondary">Month view.</Typography> },
+                    {
+                      id: "day",
+                      label: "Day",
+                      content: (
+                        <Typography variant="body2" color="text.secondary">
+                          Day view.
+                        </Typography>
+                      ),
+                    },
+                    {
+                      id: "week",
+                      label: "Week",
+                      content: (
+                        <Typography variant="body2" color="text.secondary">
+                          Week view.
+                        </Typography>
+                      ),
+                    },
+                    {
+                      id: "month",
+                      label: "Month",
+                      content: (
+                        <Typography variant="body2" color="text.secondary">
+                          Month view.
+                        </Typography>
+                      ),
+                    },
                   ]}
                   variant="contained"
                 />
@@ -420,7 +501,11 @@ export default function ComponentShowcase() {
                 <Stack direction="row" spacing={6} alignItems="center">
                   {(["small", "medium", "large"] as const).map((sz) => (
                     <Box key={sz}>
-                      <Typography variant="caption" color="text.tertiary" sx={{ mb: 1 }}>
+                      <Typography
+                        variant="caption"
+                        color="text.tertiary"
+                        sx={{ mb: 1 }}
+                      >
                         {sz}
                       </Typography>
                       <AvatarGroup avatars={MOCK_AVATARS} max={4} size={sz} />
@@ -433,16 +518,38 @@ export default function ComponentShowcase() {
               <DemoCard title="MetricBar">
                 <Stack spacing={3}>
                   <MetricBar label="CPU Usage" value={72} color="primary" />
-                  <MetricBar label="Memory" value={45} color="success" variant="striped" />
-                  <MetricBar label="Storage" value={89} color="error" variant="segmented" />
+                  <MetricBar
+                    label="Memory"
+                    value={45}
+                    color="success"
+                    variant="striped"
+                  />
+                  <MetricBar
+                    label="Storage"
+                    value={89}
+                    color="error"
+                    variant="segmented"
+                  />
                   <MetricBar
                     label="Traffic Sources"
                     value={100}
                     variant="stacked"
                     segments={[
-                      { value: 45, color: "brand.primary.enabled", label: "Direct" },
-                      { value: 30, color: "states.positive.primary", label: "Organic" },
-                      { value: 25, color: "states.caution.primary", label: "Referral" },
+                      {
+                        value: 45,
+                        color: "brand.primary.enabled",
+                        label: "Direct",
+                      },
+                      {
+                        value: 30,
+                        color: "states.positive.primary",
+                        label: "Organic",
+                      },
+                      {
+                        value: 25,
+                        color: "states.caution.primary",
+                        label: "Referral",
+                      },
                     ]}
                   />
                 </Stack>
@@ -453,7 +560,11 @@ export default function ComponentShowcase() {
                 <Accordion
                   items={MOCK_ACCORDION_ITEMS.map((item) => ({
                     ...item,
-                    content: <Typography variant="body2" color="text.secondary">{item.content}</Typography>,
+                    content: (
+                      <Typography variant="body2" color="text.secondary">
+                        {item.content}
+                      </Typography>
+                    ),
                   }))}
                 />
                 <MuiDivider sx={{ my: 4 }} />
@@ -465,7 +576,11 @@ export default function ComponentShowcase() {
                   multiple
                   items={MOCK_ACCORDION_ITEMS.slice(0, 3).map((item) => ({
                     ...item,
-                    content: <Typography variant="body2" color="text.secondary">{item.content}</Typography>,
+                    content: (
+                      <Typography variant="body2" color="text.secondary">
+                        {item.content}
+                      </Typography>
+                    ),
                   }))}
                 />
               </DemoCard>
@@ -484,20 +599,45 @@ export default function ComponentShowcase() {
               {/* Banner */}
               <DemoCard title="Banner">
                 <Stack spacing={2}>
-                  <Banner message="New version available. Update to get the latest features." severity="info" variant="subtle" />
-                  <Banner message="Your changes have been saved successfully." severity="success" variant="filled" dismissible />
-                  <Banner message="Your API key will expire in 3 days." severity="warning" variant="outlined" action={{ label: "Renew", onClick: () => { } }} />
-                  <Banner message="Unable to connect to the server. Check your connection." severity="error" variant="subtle" dismissible />
+                  <Banner
+                    message="New version available. Update to get the latest features."
+                    severity="info"
+                    variant="subtle"
+                  />
+                  <Banner
+                    message="Your changes have been saved successfully."
+                    severity="success"
+                    variant="filled"
+                    dismissible
+                  />
+                  <Banner
+                    message="Your API key will expire in 3 days."
+                    severity="warning"
+                    variant="outlined"
+                    action={{ label: "Renew", onClick: () => {} }}
+                  />
+                  <Banner
+                    message="Unable to connect to the server. Check your connection."
+                    severity="error"
+                    variant="subtle"
+                    dismissible
+                  />
                 </Stack>
               </DemoCard>
 
               {/* Dialogs */}
               <DemoCard title="ConfirmDialog">
                 <Stack direction="row" spacing={2}>
-                  <Button variant="outlined" onClick={() => setDialogOpen(true)}>
+                  <Button
+                    variant="outlined"
+                    onClick={() => setDialogOpen(true)}
+                  >
                     Open Confirm
                   </Button>
-                  <Button variant="destructive" onClick={() => setDestructiveDialogOpen(true)}>
+                  <Button
+                    variant="destructive"
+                    onClick={() => setDestructiveDialogOpen(true)}
+                  >
                     Open Destructive
                   </Button>
                 </Stack>
@@ -524,22 +664,34 @@ export default function ComponentShowcase() {
                 <Button variant="outlined" onClick={() => setDrawerOpen(true)}>
                   Open Drawer
                 </Button>
-                <InfoDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} title="User Details">
+                <InfoDrawer
+                  open={drawerOpen}
+                  onClose={() => setDrawerOpen(false)}
+                  title="User Details"
+                >
                   <Stack spacing={3}>
                     <Box>
-                      <Typography variant="caption" color="text.tertiary">Name</Typography>
+                      <Typography variant="caption" color="text.tertiary">
+                        Name
+                      </Typography>
                       <Typography>Alice Johnson</Typography>
                     </Box>
                     <Box>
-                      <Typography variant="caption" color="text.tertiary">Email</Typography>
+                      <Typography variant="caption" color="text.tertiary">
+                        Email
+                      </Typography>
                       <Typography>alice@acme.com</Typography>
                     </Box>
                     <Box>
-                      <Typography variant="caption" color="text.tertiary">Role</Typography>
+                      <Typography variant="caption" color="text.tertiary">
+                        Role
+                      </Typography>
                       <Typography>Admin</Typography>
                     </Box>
                     <Box>
-                      <Typography variant="caption" color="text.tertiary">Status</Typography>
+                      <Typography variant="caption" color="text.tertiary">
+                        Status
+                      </Typography>
                       <Chip label="Active" color="success" size="small" />
                     </Box>
                   </Stack>
@@ -549,11 +701,18 @@ export default function ComponentShowcase() {
               {/* Toast */}
               <DemoCard title="Toast">
                 <Stack direction="row" spacing={2} flexWrap="wrap">
-                  {(["success", "error", "warning", "info"] as const).map((sev) => (
-                    <Button key={sev} variant="outlined" size="small" onClick={() => setToastSeverity(sev)}>
-                      {sev}
-                    </Button>
-                  ))}
+                  {(["success", "error", "warning", "info"] as const).map(
+                    (sev) => (
+                      <Button
+                        key={sev}
+                        variant="outlined"
+                        size="small"
+                        onClick={() => setToastSeverity(sev)}
+                      >
+                        {sev}
+                      </Button>
+                    ),
+                  )}
                 </Stack>
                 <Toast
                   open={toastSeverity !== null}
@@ -568,7 +727,7 @@ export default function ComponentShowcase() {
                 <EmptyState
                   title="No results found"
                   description="Try adjusting your search or filters to find what you're looking for."
-                  action={{ label: "Clear filters", onClick: () => { } }}
+                  action={{ label: "Clear filters", onClick: () => {} }}
                 />
               </DemoCard>
 
@@ -576,21 +735,61 @@ export default function ComponentShowcase() {
               <DemoCard title="ProgressBar">
                 <Stack spacing={3}>
                   <Box>
-                    <Typography variant="caption" color="text.tertiary" sx={{ mb: 1 }}>Linear</Typography>
+                    <Typography
+                      variant="caption"
+                      color="text.tertiary"
+                      sx={{ mb: 1 }}
+                    >
+                      Linear
+                    </Typography>
                     <ProgressBar value={65} showLabel color="primary" />
                   </Box>
                   <Box>
-                    <Typography variant="caption" color="text.tertiary" sx={{ mb: 1 }}>Gradient</Typography>
-                    <ProgressBar value={80} variant="gradient" showLabel color="success" />
+                    <Typography
+                      variant="caption"
+                      color="text.tertiary"
+                      sx={{ mb: 1 }}
+                    >
+                      Gradient
+                    </Typography>
+                    <ProgressBar
+                      value={80}
+                      variant="gradient"
+                      showLabel
+                      color="success"
+                    />
                   </Box>
                   <Stack direction="row" spacing={4} alignItems="center">
                     <Box>
-                      <Typography variant="caption" color="text.tertiary" sx={{ mb: 1 }}>Circular</Typography>
-                      <ProgressBar value={42} variant="circular" showLabel size="medium" />
+                      <Typography
+                        variant="caption"
+                        color="text.tertiary"
+                        sx={{ mb: 1 }}
+                      >
+                        Circular
+                      </Typography>
+                      <ProgressBar
+                        value={42}
+                        variant="circular"
+                        showLabel
+                        size="medium"
+                      />
                     </Box>
                     <Box>
-                      <Typography variant="caption" color="text.tertiary" sx={{ mb: 1 }}>Circular (large)</Typography>
-                      <ProgressBar value={88} variant="circular" showLabel size="large" color="error" />
+                      <Typography
+                        variant="caption"
+                        color="text.tertiary"
+                        sx={{ mb: 1 }}
+                      >
+                        Circular (large)
+                      </Typography>
+                      <ProgressBar
+                        value={88}
+                        variant="circular"
+                        showLabel
+                        size="large"
+                        color="error"
+                      />
                     </Box>
                   </Stack>
                 </Stack>
@@ -609,14 +808,35 @@ export default function ComponentShowcase() {
             <Stack spacing={6} sx={{ mb: 12 }}>
               <Card
                 variant="outlined"
-                sx={{ overflow: "hidden", display: "flex", flexDirection: "column" }}
+                sx={{
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
               >
-                <Box sx={{ px: 4, py: 3, borderBottom: 1, borderColor: "border.neutral.tertiary" }}>
+                <Box
+                  sx={{
+                    px: 4,
+                    py: 3,
+                    borderBottom: 1,
+                    borderColor: "border.neutral.tertiary",
+                  }}
+                >
                   <Typography variant="subtitle2">Chat Demo</Typography>
                 </Box>
                 <ChatThread messages={chatMessages} maxHeight={350} />
-                <Box sx={{ p: 3, borderTop: 1, borderColor: "border.neutral.tertiary" }}>
-                  <ChatInput value={chatInput} onChange={setChatInput} onSend={handleSendMessage} />
+                <Box
+                  sx={{
+                    p: 3,
+                    borderTop: 1,
+                    borderColor: "border.neutral.tertiary",
+                  }}
+                >
+                  <ChatInput
+                    value={chatInput}
+                    onChange={setChatInput}
+                    onSend={handleSendMessage}
+                  />
                 </Box>
               </Card>
             </Stack>
@@ -632,48 +852,109 @@ export default function ComponentShowcase() {
 
             <Stack spacing={6} sx={{ mb: 12 }}>
               <DemoCard title="SearchInput">
-                <SearchInput value={searchValue} onChange={setSearchValue} placeholder="Search components..." fullWidth />
+                <SearchInput
+                  value={searchValue}
+                  onChange={setSearchValue}
+                  placeholder="Search components..."
+                  fullWidth
+                />
                 {searchValue && (
-                  <Typography variant="caption" color="text.tertiary" sx={{ mt: 2 }}>
+                  <Typography
+                    variant="caption"
+                    color="text.tertiary"
+                    sx={{ mt: 2 }}
+                  >
                     Debounced value: &quot;{searchValue}&quot;
                   </Typography>
                 )}
               </DemoCard>
 
               <DemoCard title="TagInput">
-                <TagInput tags={tags} onChange={setTags} placeholder="Add a tag..." max={8} fullWidth />
+                <TagInput
+                  tags={tags}
+                  onChange={setTags}
+                  placeholder="Add a tag..."
+                  max={8}
+                  fullWidth
+                />
               </DemoCard>
 
               <DemoCard title="PasswordInput">
                 <Stack spacing={4} sx={{ maxWidth: 400 }}>
-                  <PasswordInput value={passwordValue} onChange={setPasswordValue} variant="withStrength" label="Password with strength" />
-                  <PasswordInput value={passwordValue} onChange={setPasswordValue} variant="withRequirements" label="Password with requirements" />
+                  <PasswordInput
+                    value={passwordValue}
+                    onChange={setPasswordValue}
+                    variant="withStrength"
+                    label="Password with strength"
+                  />
+                  <PasswordInput
+                    value={passwordValue}
+                    onChange={setPasswordValue}
+                    variant="withRequirements"
+                    label="Password with requirements"
+                  />
                 </Stack>
               </DemoCard>
 
               <DemoCard title="ToggleGroup">
                 <Stack spacing={3}>
                   <Box>
-                    <Typography variant="caption" color="text.tertiary" sx={{ mb: 1.5, display: "block" }}>View switcher (default)</Typography>
+                    <Typography
+                      variant="caption"
+                      color="text.tertiary"
+                      sx={{ mb: 1.5, display: "block" }}
+                    >
+                      View switcher (default)
+                    </Typography>
                     <ToggleGroup
                       options={[
-                        { id: "list", label: "List", icon: <ViewListIcon sx={{ fontSize: 18 }} /> },
-                        { id: "grid", label: "Grid", icon: <ViewModuleIcon sx={{ fontSize: 18 }} /> },
-                        { id: "board", label: "Board", icon: <GridViewIcon sx={{ fontSize: 18 }} /> },
+                        {
+                          id: "list",
+                          label: "List",
+                          icon: <ViewListIcon sx={{ fontSize: 18 }} />,
+                        },
+                        {
+                          id: "grid",
+                          label: "Grid",
+                          icon: <ViewModuleIcon sx={{ fontSize: 18 }} />,
+                        },
+                        {
+                          id: "board",
+                          label: "Board",
+                          icon: <GridViewIcon sx={{ fontSize: 18 }} />,
+                        },
                       ]}
                       value={toggleValue}
                       onChange={setToggleValue}
                     />
                   </Box>
                   <Box>
-                    <Typography variant="caption" color="text.tertiary" sx={{ mb: 1.5, display: "block" }}>Text formatting (pills, multiple)</Typography>
+                    <Typography
+                      variant="caption"
+                      color="text.tertiary"
+                      sx={{ mb: 1.5, display: "block" }}
+                    >
+                      Text formatting (pills, multiple)
+                    </Typography>
                     <ToggleGroup
                       variant="pills"
                       multiple
                       options={[
-                        { id: "bold", label: "B", icon: <FormatBoldIcon sx={{ fontSize: 18 }} /> },
-                        { id: "italic", label: "I", icon: <FormatItalicIcon sx={{ fontSize: 18 }} /> },
-                        { id: "underline", label: "U", icon: <FormatUnderlinedIcon sx={{ fontSize: 18 }} /> },
+                        {
+                          id: "bold",
+                          label: "B",
+                          icon: <FormatBoldIcon sx={{ fontSize: 18 }} />,
+                        },
+                        {
+                          id: "italic",
+                          label: "I",
+                          icon: <FormatItalicIcon sx={{ fontSize: 18 }} />,
+                        },
+                        {
+                          id: "underline",
+                          label: "U",
+                          icon: <FormatUnderlinedIcon sx={{ fontSize: 18 }} />,
+                        },
                       ]}
                       value={formatValue}
                       onChange={setFormatValue}
@@ -685,16 +966,45 @@ export default function ComponentShowcase() {
               <DemoCard title="Rating">
                 <Stack spacing={3}>
                   <Box>
-                    <Typography variant="caption" color="text.tertiary" sx={{ mb: 1, display: "block" }}>Interactive stars</Typography>
-                    <Rating value={ratingValue} onChange={setRatingValue} showLabel size="large" />
+                    <Typography
+                      variant="caption"
+                      color="text.tertiary"
+                      sx={{ mb: 1, display: "block" }}
+                    >
+                      Interactive stars
+                    </Typography>
+                    <Rating
+                      value={ratingValue}
+                      onChange={setRatingValue}
+                      showLabel
+                      size="large"
+                    />
                   </Box>
                   <Box>
-                    <Typography variant="caption" color="text.tertiary" sx={{ mb: 1, display: "block" }}>Read-only half stars</Typography>
+                    <Typography
+                      variant="caption"
+                      color="text.tertiary"
+                      sx={{ mb: 1, display: "block" }}
+                    >
+                      Read-only half stars
+                    </Typography>
                     <Rating value={3.5} readOnly showLabel />
                   </Box>
                   <Box>
-                    <Typography variant="caption" color="text.tertiary" sx={{ mb: 1, display: "block" }}>Hearts variant</Typography>
-                    <Rating value={4} variant="hearts" color="error" readOnly showLabel />
+                    <Typography
+                      variant="caption"
+                      color="text.tertiary"
+                      sx={{ mb: 1, display: "block" }}
+                    >
+                      Hearts variant
+                    </Typography>
+                    <Rating
+                      value={4}
+                      variant="hearts"
+                      color="error"
+                      readOnly
+                      showLabel
+                    />
                   </Box>
                 </Stack>
               </DemoCard>
@@ -707,11 +1017,17 @@ export default function ComponentShowcase() {
                   onFilesSelected={(files) =>
                     setUploadedFiles((prev) => [
                       ...prev,
-                      ...files.map((f) => ({ name: f.name, size: f.size, progress: 100 })),
+                      ...files.map((f) => ({
+                        name: f.name,
+                        size: f.size,
+                        progress: 100,
+                      })),
                     ])
                   }
                   onFileRemove={(index) =>
-                    setUploadedFiles((prev) => prev.filter((_, i) => i !== index))
+                    setUploadedFiles((prev) =>
+                      prev.filter((_, i) => i !== index),
+                    )
                   }
                   files={uploadedFiles}
                 />
@@ -737,7 +1053,11 @@ export default function ComponentShowcase() {
                       <Typography variant="h5" fontWeight={700} gutterBottom>
                         {slide.title}
                       </Typography>
-                      <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 400 }}>
+                      <Typography
+                        variant="body1"
+                        color="text.secondary"
+                        sx={{ maxWidth: 400 }}
+                      >
                         {slide.description}
                       </Typography>
                     </Box>
@@ -757,35 +1077,62 @@ export default function ComponentShowcase() {
 
             <Stack spacing={6} sx={{ mb: 12 }}>
               <DemoCard title="CodeBlock — Default">
-                <CodeBlock code={SAMPLE_CODE} language="TypeScript" title="MyComponent.tsx" showLineNumbers />
+                <CodeBlock
+                  code={SAMPLE_CODE}
+                  language="TypeScript"
+                  title="MyComponent.tsx"
+                  showLineNumbers
+                />
               </DemoCard>
 
               <DemoCard title="CodeBlock — Terminal">
-                <CodeBlock code={`$ npm install @mui/material @emotion/react\n$ npx next dev --turbopack\n\n  ▲ Next.js 16.2.1\n  - Local: http://localhost:3000\n  ✓ Ready in 1.2s`} variant="terminal" title="Terminal" />
+                <CodeBlock
+                  code={`$ npm install @mui/material @emotion/react\n$ npx next dev --turbopack\n\n  ▲ Next.js 16.2.1\n  - Local: http://localhost:3000\n  ✓ Ready in 1.2s`}
+                  variant="terminal"
+                  title="Terminal"
+                />
               </DemoCard>
 
               <DemoCard title="CodeBlock — Compact">
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                  Use <CodeBlock code='bgcolor: "surface.container.low"' variant="compact" /> for semantic surface tokens.
+                <Typography
+                  variant="body2"
+                  component="div"
+                  color="text.secondary"
+                  sx={{ mb: 2 }}
+                >
+                  Use{" "}
+                  <CodeBlock
+                    code='bgcolor: "surface.container.low"'
+                    variant="compact"
+                  />{" "}
+                  for semantic surface tokens.
                 </Typography>
               </DemoCard>
 
               <DemoCard title="KBD">
                 <Stack spacing={2}>
                   <Stack direction="row" spacing={3} alignItems="center">
-                    <Typography variant="body2" color="text.secondary">Save:</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Save:
+                    </Typography>
                     <KBD keys={["⌘", "S"]} />
                   </Stack>
                   <Stack direction="row" spacing={3} alignItems="center">
-                    <Typography variant="body2" color="text.secondary">Command Palette:</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Command Palette:
+                    </Typography>
                     <KBD keys={["⌘", "⇧", "P"]} />
                   </Stack>
                   <Stack direction="row" spacing={3} alignItems="center">
-                    <Typography variant="body2" color="text.secondary">Ghost variant:</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Ghost variant:
+                    </Typography>
                     <KBD keys={["Ctrl", "Alt", "Del"]} variant="ghost" />
                   </Stack>
                   <Stack direction="row" spacing={3} alignItems="center">
-                    <Typography variant="body2" color="text.secondary">Outlined (small):</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Outlined (small):
+                    </Typography>
                     <KBD keys={["Esc"]} variant="outlined" size="small" />
                   </Stack>
                 </Stack>
@@ -795,9 +1142,17 @@ export default function ComponentShowcase() {
                 <Stack spacing={3}>
                   <Divider variant="solid" label="Solid with label" />
                   <Divider variant="dashed" />
-                  <Divider variant="dotted" label="Dotted" labelPosition="left" />
+                  <Divider
+                    variant="dotted"
+                    label="Dotted"
+                    labelPosition="left"
+                  />
                   <Divider variant="gradient" />
-                  <Divider variant="solid" color="primary" label="Primary color" />
+                  <Divider
+                    variant="solid"
+                    color="primary"
+                    label="Primary color"
+                  />
                 </Stack>
               </DemoCard>
             </Stack>
@@ -820,7 +1175,7 @@ export default function ComponentShowcase() {
                     subtitle="Lead Designer"
                     status="online"
                     badges={["Admin", "Pro"]}
-                    actions={[{ label: "Follow", onClick: () => { } }]}
+                    actions={[{ label: "Follow", onClick: () => {} }]}
                   />
                   <UserCard
                     name="Bob Chen"
@@ -834,24 +1189,45 @@ export default function ComponentShowcase() {
                   />
                 </Stack>
                 <MuiDivider sx={{ my: 4 }} />
-                <Typography variant="subtitle2" sx={{ mb: 3 }}>Compact</Typography>
+                <Typography variant="subtitle2" sx={{ mb: 3 }}>
+                  Compact
+                </Typography>
                 <Stack spacing={2} sx={{ maxWidth: 360 }}>
-                  <UserCard name="Carol Reyes" subtitle="Designer" variant="compact" status="online" />
-                  <UserCard name="David Kim" subtitle="Developer" variant="compact" status="busy" />
-                  <UserCard name="Eva Müller" subtitle="PM" variant="compact" status="offline" />
+                  <UserCard
+                    name="Carol Reyes"
+                    subtitle="Designer"
+                    variant="compact"
+                    status="online"
+                  />
+                  <UserCard
+                    name="David Kim"
+                    subtitle="Developer"
+                    variant="compact"
+                    status="busy"
+                  />
+                  <UserCard
+                    name="Eva Müller"
+                    subtitle="PM"
+                    variant="compact"
+                    status="offline"
+                  />
                 </Stack>
               </DemoCard>
 
               {/* Pricing Cards */}
               <DemoCard title="PricingCard">
-                <Stack direction={{ xs: "column", md: "row" }} spacing={3} alignItems="stretch">
+                <Stack
+                  direction={{ xs: "column", md: "row" }}
+                  spacing={3}
+                  alignItems="stretch"
+                >
                   {MOCK_PRICING_PLANS.map((plan, i) => (
                     <Box key={plan.title} sx={{ flex: 1 }}>
                       <PricingCard
                         {...plan}
                         variant={i === 1 ? "featured" : "default"}
                         highlighted={i === 1}
-                        onCtaClick={() => { }}
+                        onCtaClick={() => {}}
                       />
                     </Box>
                   ))}
@@ -865,8 +1241,10 @@ export default function ComponentShowcase() {
                     <NotificationCard
                       key={i}
                       {...notif}
-                      variant={i === 0 ? "default" : i === 3 ? "compact" : "default"}
-                      onClick={() => { }}
+                      variant={
+                        i === 0 ? "default" : i === 3 ? "compact" : "default"
+                      }
+                      onClick={() => {}}
                     />
                   ))}
                 </Stack>
@@ -887,27 +1265,58 @@ export default function ComponentShowcase() {
               <DemoCard title="Badge">
                 <Stack direction="row" spacing={5} alignItems="center">
                   <Box>
-                    <Typography variant="caption" color="text.tertiary" sx={{ mb: 1.5, display: "block" }}>Count</Typography>
+                    <Typography
+                      variant="caption"
+                      color="text.tertiary"
+                      sx={{ mb: 1.5, display: "block" }}
+                    >
+                      Count
+                    </Typography>
                     <Badge variant="count" count={5} color="error">
                       <NotificationsNoneIcon sx={{ fontSize: 28 }} />
                     </Badge>
                   </Box>
                   <Box>
-                    <Typography variant="caption" color="text.tertiary" sx={{ mb: 1.5, display: "block" }}>Dot</Typography>
+                    <Typography
+                      variant="caption"
+                      color="text.tertiary"
+                      sx={{ mb: 1.5, display: "block" }}
+                    >
+                      Dot
+                    </Typography>
                     <Badge variant="dot" color="primary">
                       <MailOutlineIcon sx={{ fontSize: 28 }} />
                     </Badge>
                   </Box>
                   <Box>
-                    <Typography variant="caption" color="text.tertiary" sx={{ mb: 1.5, display: "block" }}>99+</Typography>
+                    <Typography
+                      variant="caption"
+                      color="text.tertiary"
+                      sx={{ mb: 1.5, display: "block" }}
+                    >
+                      99+
+                    </Typography>
                     <Badge variant="count" count={150} color="error">
                       <NotificationsNoneIcon sx={{ fontSize: 28 }} />
                     </Badge>
                   </Box>
                   <Box>
-                    <Typography variant="caption" color="text.tertiary" sx={{ mb: 1.5, display: "block" }}>Status</Typography>
+                    <Typography
+                      variant="caption"
+                      color="text.tertiary"
+                      sx={{ mb: 1.5, display: "block" }}
+                    >
+                      Status
+                    </Typography>
                     <Badge variant="status" status="online">
-                      <Box sx={{ width: 32, height: 32, borderRadius: "50%", bgcolor: "surface.neutral.secondary" }} />
+                      <Box
+                        sx={{
+                          width: 32,
+                          height: 32,
+                          borderRadius: "50%",
+                          bgcolor: "surface.neutral.secondary",
+                        }}
+                      />
                     </Badge>
                   </Box>
                 </Stack>
@@ -917,20 +1326,56 @@ export default function ComponentShowcase() {
               <DemoCard title="StatusDot">
                 <Stack spacing={3}>
                   <Stack direction="row" spacing={4} alignItems="center">
-                    {(["online", "offline", "away", "busy", "neutral"] as const).map((status) => (
-                      <StatusDot key={status} status={status} showLabel label={status} />
+                    {(
+                      ["online", "offline", "away", "busy", "neutral"] as const
+                    ).map((status) => (
+                      <StatusDot
+                        key={status}
+                        status={status}
+                        showLabel
+                        label={status}
+                      />
                     ))}
                   </Stack>
                   <Stack direction="row" spacing={4} alignItems="center">
-                    <Typography variant="caption" color="text.tertiary">Pulse:</Typography>
-                    <StatusDot status="online" variant="pulse" showLabel label="Online" />
-                    <StatusDot status="busy" variant="pulse" showLabel label="Busy" />
+                    <Typography variant="caption" color="text.tertiary">
+                      Pulse:
+                    </Typography>
+                    <StatusDot
+                      status="online"
+                      variant="pulse"
+                      showLabel
+                      label="Online"
+                    />
+                    <StatusDot
+                      status="busy"
+                      variant="pulse"
+                      showLabel
+                      label="Busy"
+                    />
                   </Stack>
                   <Stack direction="row" spacing={4} alignItems="center">
-                    <Typography variant="caption" color="text.tertiary">Badge:</Typography>
-                    <StatusDot status="online" variant="badge" showLabel label="Available" />
-                    <StatusDot status="away" variant="badge" showLabel label="Away" />
-                    <StatusDot status="offline" variant="badge" showLabel label="Offline" />
+                    <Typography variant="caption" color="text.tertiary">
+                      Badge:
+                    </Typography>
+                    <StatusDot
+                      status="online"
+                      variant="badge"
+                      showLabel
+                      label="Available"
+                    />
+                    <StatusDot
+                      status="away"
+                      variant="badge"
+                      showLabel
+                      label="Away"
+                    />
+                    <StatusDot
+                      status="offline"
+                      variant="badge"
+                      showLabel
+                      label="Offline"
+                    />
                   </Stack>
                 </Stack>
               </DemoCard>
@@ -949,12 +1394,20 @@ export default function ComponentShowcase() {
               <DemoCard title="DropdownMenu">
                 <Stack direction="row" spacing={3}>
                   <DropdownMenu
-                    trigger={<Button variant="outlined" size="small">Actions</Button>}
+                    trigger={
+                      <Button variant="outlined" size="small">
+                        Actions
+                      </Button>
+                    }
                     items={MOCK_DROPDOWN_ITEMS}
                   />
                   <DropdownMenu
                     trigger={
-                      <Button variant="outlined" size="small" sx={{ minWidth: "auto", px: 1 }}>
+                      <Button
+                        variant="outlined"
+                        size="small"
+                        sx={{ minWidth: "auto", px: 1 }}
+                      >
                         <MoreVertIcon fontSize="small" />
                       </Button>
                     }
@@ -967,7 +1420,11 @@ export default function ComponentShowcase() {
 
               <DemoCard title="CommandPalette">
                 <Stack direction="row" spacing={2} alignItems="center">
-                  <Button variant="outlined" size="small" onClick={() => setCommandOpen(true)}>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    onClick={() => setCommandOpen(true)}
+                  >
                     Open Command Palette
                   </Button>
                   <Typography variant="caption" color="text.tertiary">
