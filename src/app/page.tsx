@@ -1,5 +1,6 @@
 "use client";
 
+import ToggleLanguageFab from "@/modules/shared/components/ToggleLanguageFab/ToggleLanguageFab.component";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -59,6 +60,8 @@ export default function Home() {
           </Stack>
         </Container>
       </Box>
+
+      <ToggleLanguageFab />
 
       <Divider />
 

@@ -43,6 +43,9 @@ treat everything here as library code, not a one-off app.
 - **SEO:** every page exports `metadata` via `createMetadata()`
   (`src/modules/shared/utils/seo.util.ts`); site identity lives in `src/site.config.ts`. See the
   `seo-metadata` skill.
+- **Bilingual copy:** if a project only needs EN/ES with no localized routes, use
+  `useTranslations()` + inline `t(en, es)` pairs and `ToggleLanguageFab` (already wired via
+  `LanguageProvider`) — not `next-intl`/routed locales. See the `bilingual-toggle` skill.
 - **Env vars:** validated and typed in `src/env.ts` (zod) — add new vars there, import `env` from
   it, never read `process.env` directly in app code.
 - **Testing:** Vitest + Testing Library, colocated `*.test.ts(x)` files, `renderWithTheme` from
@@ -61,5 +64,6 @@ treat everything here as library code, not a one-off app.
 - `theme-tokens-no-hardcoded-colors` — colors/spacing/radius always via tokens, never hardcoded
 - `typography-variants` — fixed, responsive type scale; always use `Typography` variants
 - `client-state-zustand` — when (and when not) to reach for a global store
+- `bilingual-toggle` — EN/ES via inline `t(en, es)`, no routing, for two-language projects
 - `seo-metadata` — metadata/sitemap/robots/OG image helpers
 - `testing-vitest` — writing tests with Vitest + Testing Library
