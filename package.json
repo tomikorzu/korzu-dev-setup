@@ -1,6 +1,6 @@
 {
   "name": "create-korzu-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "type": "module",
   "description": "Scaffold a Next.js/MUI frontend, NestJS backend, Expo mobile app, and/or Strapi CMS — standalone or as a Turborepo monorepo.",
