@@ -11,6 +11,7 @@ export interface SemanticTokens {
   brand: {
     primary: { enabled: string; hovered: string };
     accent: { enabled: string; hovered: string };
+    tertiary?: { enabled: string; hovered: string };
   };
 
   surface: {

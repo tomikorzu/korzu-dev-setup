@@ -41,6 +41,9 @@ const brandTokens = {
     enabled: brand.accent[600],
     hovered: brand.accent[400],
   },
+  ...(brand.tertiary && {
+    tertiary: { enabled: brand.tertiary[600], hovered: brand.tertiary[400] },
+  }),
 };
 
 const surface = {
