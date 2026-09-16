@@ -1,5 +1,5 @@
+import { type ColorScale, generateColorScale } from "./color-scale";
 import { primitives } from "./primitives";
-import { generateColorScale, type ColorScale } from "./color-scale";
 
 const { colors, borderRadius } = primitives;
 
