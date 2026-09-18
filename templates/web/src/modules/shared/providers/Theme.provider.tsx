@@ -8,7 +8,7 @@ import theme from "@/theme/theme";
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
   return (
-    <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+    <AppRouterCacheProvider options={{ enableCssLayer: true }}> 
       <MUIThemeProvider theme={theme}>
         <CssBaseline enableColorScheme />
         {children}
