@@ -325,28 +325,30 @@ export const MOCK_NOTIFICATIONS = [
   {
     title: "New comment",
     message: "Alice mentioned you in a code review.",
-    timestamp: "2 min ago",
+    // NotificationCard formats this itself via formatRelativeTime(), so it needs a real
+    // parseable date, not a pre-formatted string like "2 min ago".
+    timestamp: new Date(Date.now() - 2 * 60 * 1000).toISOString(),
     type: "mention" as const,
     read: false,
   },
   {
     title: "Build succeeded",
     message: "Production deployment completed successfully.",
-    timestamp: "15 min ago",
+    timestamp: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
     type: "success" as const,
     read: false,
   },
   {
     title: "API limit warning",
     message: "You've used 85% of your monthly API quota.",
-    timestamp: "1 hour ago",
+    timestamp: new Date(Date.now() - 60 * 60 * 1000).toISOString(),
     type: "warning" as const,
     read: true,
   },
   {
     title: "System update",
     message: "Scheduled maintenance tonight at 2:00 AM UTC.",
-    timestamp: "3 hours ago",
+    timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(),
     type: "system" as const,
     read: true,
   },
