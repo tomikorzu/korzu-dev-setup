@@ -1,6 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
 import { createStrapiClient } from "./strapi.util";
 
+// No stable public Strapi demo exists to hit for real (unlike wordpress.test.ts), so this
+// mocks fetch instead of making a live request.
 describe("strapi", () => {
   it("fetches a collection from the Strapi API", async () => {
     vi.stubGlobal(
