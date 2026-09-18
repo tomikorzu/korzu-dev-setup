@@ -1,4 +1,5 @@
-// keeps tokens.light.ts and tokens.dark.ts structurally in sync at compile time
+// This file is used to type the semantic tokens for the theme.
+
 export interface SemanticTokens {
   states: {
     positive: { primary: string; secondary: string; tertiary: string };

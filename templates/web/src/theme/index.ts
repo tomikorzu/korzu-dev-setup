@@ -7,4 +7,4 @@ export { default as theme } from "./theme";
 export type { SemanticTokens, SharedTokens } from "./tokens";
 export { darkTokens, lightTokens, sharedTokens } from "./tokens";
 export { typography } from "./typography";
-export { alpha, fluidType, focusRing } from "./utils";
+export { alpha, fluidType } from "./utils";

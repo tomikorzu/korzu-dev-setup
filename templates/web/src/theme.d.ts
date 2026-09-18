@@ -1,7 +1,7 @@
 /**
  * MUI Theme Type Extensions
  *
- * Extiende los tipos de MUI para agregar variantes custom.
+ * Extends the MUI theme types to add custom variants.
  */
 
 import "@mui/material/Button";

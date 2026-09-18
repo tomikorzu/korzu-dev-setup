@@ -51,7 +51,7 @@ it all derives from that one file.
 5. **Non-color primitives (spacing, radius, shadow, transition, z-index) come from
    `primitives.ts` / `sharedTokens`**, not magic numbers — same rule as colors, just not
    color-specific.
-6. **Use `alpha()`, `focusRing()`, `fluidType()` from `src/theme/utils.ts`** instead of writing
+6. **Use `alpha()`, `fluidType()` from `src/theme/utils.ts`** instead of writing
    `rgba(...)` or `clamp(...)` by hand for transparency, focus rings, or fluid type.
 
 ## When reviewing styling code

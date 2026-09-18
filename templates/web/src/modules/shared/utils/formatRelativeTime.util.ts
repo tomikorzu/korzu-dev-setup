@@ -1,6 +1,7 @@
+import { siteConfig } from "@/site.config";
+
 /**
- * Formats a date into a human-readable relative time string.
- * Uses Intl.RelativeTimeFormat — no external dependencies.
+ * This function formats a date into a human-readable relative time string.
  *
  * @example
  * formatRelativeTime(new Date(Date.now() - 60000)) // → "1 minute ago"
@@ -10,7 +11,7 @@ export function formatRelativeTime(date: Date): string {
   const diffMs = now - date.getTime();
   const diffSec = Math.floor(diffMs / 1000);
 
-  const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+  const rtf = new Intl.RelativeTimeFormat(siteConfig.locale, { numeric: "auto" });
 
   if (diffSec < 60) return rtf.format(-diffSec, "second");
   const diffMin = Math.floor(diffSec / 60);

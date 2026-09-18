@@ -1,5 +1,5 @@
 /**
- * Generates an array of page numbers and ellipsis markers for pagination.
+ * This function generates an array of page numbers and ellipsis markers for pagination.
  * Returns items like: [1, "...", 4, 5, 6, "...", 10]
  *
  * @param currentPage - Active page (1-indexed)

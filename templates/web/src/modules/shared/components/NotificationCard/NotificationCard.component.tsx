@@ -14,6 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useMemo } from "react";
+import { formatRelativeTime } from "@/modules/shared/utils/formatRelativeTime.util";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -33,7 +34,7 @@ export interface NotificationCardProps {
   /** Notification body text */
   message: string;
   /** When the notification occurred */
-  timestamp: string | Date;
+  timestamp: string;
   /** Layout variant */
   variant?: NotificationVariant;
   /** Semantic type controls icon and color */
@@ -84,26 +85,9 @@ const TYPE_CONFIG: Record<
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-/** Formats a timestamp into a short relative string (e.g. "just now", "5m ago"). */
-function formatRelativeTime(timestamp: string | Date): string {
-  const now = Date.now();
-  const then =
-    timestamp instanceof Date
-      ? timestamp.getTime()
-      : new Date(timestamp).getTime();
-  const diffSeconds = Math.floor((now - then) / 1000);
-
-  if (diffSeconds < 60) return "just now";
-  const diffMinutes = Math.floor(diffSeconds / 60);
-  if (diffMinutes < 60) return `${diffMinutes}m ago`;
-  const diffHours = Math.floor(diffMinutes / 60);
-  if (diffHours < 24) return `${diffHours}h ago`;
-  const diffDays = Math.floor(diffHours / 24);
-  if (diffDays < 7) return `${diffDays}d ago`;
-  return new Date(then).toLocaleDateString();
-}
-
-/** Returns the icon and color tokens for a given notification type. */
+/* 
+* This function returns the icon and color tokens for a given notification type. 
+*/
 function getTypeVisuals(
   type: NotificationType,
   avatar?: string,
@@ -149,7 +133,7 @@ export default function NotificationCard({
 }: NotificationCardProps) {
   const visuals = getTypeVisuals(type, avatar);
   const relativeTime = useMemo(
-    () => formatRelativeTime(timestamp),
+    () => formatRelativeTime(new Date(timestamp)),
     [timestamp],
   );
 

@@ -2,8 +2,8 @@ import { primitives } from "./primitives";
 import { projectConfig } from "./project.config";
 import { fluidType } from "./utils";
 
-// Headings scale fluidly between mobile and desktop; body/UI text stays fixed
-// so it doesn't get harder to read or tap on small screens.
+// Here we define the typography variants and styles for the project.
+
 export const typography = {
   fontFamily: projectConfig.font.sans,
 

@@ -3,17 +3,14 @@ import { primitives } from "./primitives";
 
 const { colors, borderRadius } = primitives;
 
-// The only file to edit when starting a new project — brand, fonts, radius, color scheme.
+// Edit this file to rebrand a new project.
 export const projectConfig = {
   brand: {
-    // Exact client hex (e.g. a restaurant's brand green) — rendered pixel-exact in
-    // light mode; every other shade (hover, dark mode, surfaces) is generated from it.
-    primary: generateColorScale("#16A34A"), // buttons, links, focus rings
-    accent: generateColorScale("#C9A84C"), // highlights, active nav, secondary buttons
-    // set to generateColorScale("#hex") if the client has a third brand color
+    // Client hex; other shades are generated from it.
+    primary: generateColorScale("#16A34A"),
+    accent: generateColorScale("#C9A84C"),
     tertiary: undefined as ColorScale | undefined,
 
-    // rarely change between brands
     positive: colors.green,
     negative: colors.red,
     info: colors.blue,
@@ -27,7 +24,7 @@ export const projectConfig = {
   },
 
   radius: {
-    base: borderRadius.lg, // MUI's global default (theme.shape.borderRadius)
+    base: borderRadius.lg,
     button: borderRadius.md,
     card: borderRadius.xl,
     input: borderRadius.base,
@@ -35,7 +32,7 @@ export const projectConfig = {
     chip: borderRadius.base,
   },
 
-  defaultColorScheme: "light", // shown before we know the user's/OS preference
+  defaultColorScheme: "light",
 } as const;
 
 export type ProjectConfig = typeof projectConfig;

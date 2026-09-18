@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/site.config";
 
+// This file lists all the pages that should be indexed by browsers.
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = ["", "/components"];
 

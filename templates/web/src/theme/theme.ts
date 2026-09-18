@@ -8,8 +8,8 @@ import { typography } from "./typography";
 
 import "./theme.augments";
 
-// Maps SemanticTokens onto MUI's palette shape. Custom keys (surface, buttons, etc.)
-// get turned into CSS vars automatically, same as the standard ones.
+// This function builds the palette for the theme.
+
 function buildPalette(tokens: SemanticTokens) {
   return {
     primary: {
@@ -58,6 +58,8 @@ function buildPalette(tokens: SemanticTokens) {
     states: tokens.states,
   };
 }
+
+// This is the main theme object.
 
 const theme = createTheme({
   cssVariables: {

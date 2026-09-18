@@ -1,3 +1,4 @@
+// This class is used to throw an error when the CMS fetch fails.
 export class CmsFetchError extends Error {
   status: number;
   url: string;
@@ -9,6 +10,11 @@ export class CmsFetchError extends Error {
     this.url = url;
   }
 }
+
+/* 
+ * This function fetches data from CMS, and if it fails, it throws a CmsFetchError. 
+ * If not, it returns a typed JSON response. 
+*/
 
 export async function cmsFetch<T>(url: string, init?: RequestInit): Promise<T> {
   const res = await fetch(url, init);
@@ -24,6 +30,8 @@ export async function cmsFetch<T>(url: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+// This function converts a record of parameters to a query string.
+// Example: { page: 1, limit: 10 } -> "?page=1&limit=10"
 export function toQueryString(
   params: Record<string, string | number | boolean>,
 ): string {

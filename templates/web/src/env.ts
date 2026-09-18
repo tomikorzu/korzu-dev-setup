@@ -1,11 +1,13 @@
 import { z } from "zod";
 
-// Server-only vars — never exposed to the client bundle.
+// This file is used to type the environment variables.
+
+// Server-only vars
 const serverSchema = z.object({
   STRAPI_API_TOKEN: z.string().optional(),
 });
 
-// Client-safe vars — must be prefixed NEXT_PUBLIC_ to be inlined by Next.js.
+// Client-safe vars
 const clientSchema = z.object({
   NEXT_PUBLIC_WORDPRESS_URL: z.string().url().optional(),
   NEXT_PUBLIC_STRAPI_URL: z.string().url().optional(),
