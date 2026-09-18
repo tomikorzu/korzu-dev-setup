@@ -9,7 +9,8 @@ describe("strapi", () => {
       "fetch",
       vi.fn().mockResolvedValue({
         ok: true,
-        json: () => Promise.resolve({ data: [{ id: 1, attributes: {} }], meta: {} }),
+        json: () =>
+          Promise.resolve({ data: [{ id: 1, attributes: {} }], meta: {} }),
       }),
     );
     const strapi = createStrapiClient({ baseUrl: "https://mock.cms.test" });
@@ -35,7 +36,10 @@ describe("strapi", () => {
       "fetch",
       vi.fn().mockResolvedValue({
         ok: true,
-        json: () => Promise.resolve({ data: [{ id: 1, attributes: { slug: "hello-world" } }] }),
+        json: () =>
+          Promise.resolve({
+            data: [{ id: 1, attributes: { slug: "hello-world" } }],
+          }),
       }),
     );
     const strapi = createStrapiClient({ baseUrl: "https://mock.cms.test" });

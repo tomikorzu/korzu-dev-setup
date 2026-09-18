@@ -85,9 +85,9 @@ const TYPE_CONFIG: Record<
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-/* 
-* This function returns the icon and color tokens for a given notification type. 
-*/
+/*
+ * This function returns the icon and color tokens for a given notification type.
+ */
 function getTypeVisuals(
   type: NotificationType,
   avatar?: string,

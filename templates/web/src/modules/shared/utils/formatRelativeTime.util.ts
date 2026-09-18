@@ -11,7 +11,9 @@ export function formatRelativeTime(date: Date): string {
   const diffMs = now - date.getTime();
   const diffSec = Math.floor(diffMs / 1000);
 
-  const rtf = new Intl.RelativeTimeFormat(siteConfig.locale, { numeric: "auto" });
+  const rtf = new Intl.RelativeTimeFormat(siteConfig.locale, {
+    numeric: "auto",
+  });
 
   if (diffSec < 60) return rtf.format(-diffSec, "second");
   const diffMin = Math.floor(diffSec / 60);

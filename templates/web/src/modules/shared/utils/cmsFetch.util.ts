@@ -12,8 +12,8 @@ export class CmsFetchError extends Error {
 }
 
 /*
- * This function fetches data from CMS, and if it fails, it throws a CmsFetchError. 
- * If not, it returns a typed JSON response. 
+ * This function fetches data from CMS, and if it fails, it throws a CmsFetchError.
+ * If not, it returns a typed JSON response.
  *
  * @example
  * const posts = await cmsFetch<Post[]>(`${env.NEXT_PUBLIC_STRAPI_URL}/api/posts`);
