@@ -11,34 +11,41 @@ export class CmsFetchError extends Error {
   }
 }
 
-/* 
+/*
  * This function fetches data from CMS, and if it fails, it throws a CmsFetchError. 
  * If not, it returns a typed JSON response. 
-*/
-
+ *
+ * @example
+ * const posts = await cmsFetch<Post[]>(`${env.NEXT_PUBLIC_STRAPI_URL}/api/posts`);
+ */
 export async function cmsFetch<T>(url: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(url, init);
+  const response = await fetch(url, init);
 
-  if (!res.ok) {
+  if (!response.ok) {
     throw new CmsFetchError(
-      `${res.status} ${res.statusText} for ${url}`,
-      res.status,
+      `${response.status} ${response.statusText} for ${url}`,
+      response.status,
       url,
     );
   }
 
-  return res.json() as Promise<T>;
+  return response.json() as Promise<T>;
 }
 
-// This function converts a record of parameters to a query string.
-// Example: { page: 1, limit: 10 } -> "?page=1&limit=10"
+/**
+ * Converts a params object into a URL query string, omitting the `?` when empty.
+ *
+ * @example
+ * toQueryString({ page: 1, limit: 10 }); // "?page=1&limit=10"
+ * toQueryString({}); // ""
+ */
 export function toQueryString(
   params: Record<string, string | number | boolean>,
 ): string {
-  const query = new URLSearchParams(
+  const queryString = new URLSearchParams(
     Object.fromEntries(
       Object.entries(params).map(([key, value]) => [key, String(value)]),
     ),
   ).toString();
-  return query ? `?${query}` : "";
+  return queryString ? `?${queryString}` : "";
 }

@@ -13,27 +13,37 @@ interface StrapiListResponse<T> {
 
 // Strapi v4 nests fields under `attributes`; v5 flattens them onto the entry.
 // biome-ignore lint/suspicious/noExplicitAny: raw Strapi entry shape, normalized right after
-function flattenEntry<T>(entry: any): T {
-  return entry && "attributes" in entry
-    ? { id: entry.id, ...entry.attributes }
-    : entry;
+function flattenEntry<T>(rawEntry: any): T {
+  return rawEntry && "attributes" in rawEntry
+    ? { id: rawEntry.id, ...rawEntry.attributes }
+    : rawEntry;
 }
 
-/** Client for the Strapi REST API (`/api`). Works with any collection or single type. */
+/**
+ * Client for the Strapi REST API (`/api`). Works with any collection or single type.
+ *
+ * @example
+ * const strapi = createStrapiClient({ baseUrl: "https://cms.example.com" });
+ * const { data: posts } = await strapi.getCollection<Post>("posts");
+ * const post = await strapi.getBySlug<Post>("posts", "hello-world");
+ */
 export function createStrapiClient({ baseUrl, token }: StrapiOptions) {
   const apiUrl = `${baseUrl.replace(/\/$/, "")}/api`;
-  const headers = token ? { Authorization: `Bearer ${token}` } : undefined;
+  const authHeaders = token ? { Authorization: `Bearer ${token}` } : undefined;
 
   return {
     async getCollection<T>(
       collection: string,
       params: Record<string, string | number | boolean> = {},
     ): Promise<{ data: T[]; meta: StrapiListResponse<T>["meta"] }> {
-      const { data, meta } = await cmsFetch<StrapiListResponse<T>>(
+      const { data: rawEntries, meta } = await cmsFetch<StrapiListResponse<T>>(
         `${apiUrl}/${collection}${toQueryString(params)}`,
-        { headers },
+        { headers: authHeaders },
       );
-      return { data: data.map((entry) => flattenEntry<T>(entry)), meta };
+      return {
+        data: rawEntries.map((rawEntry) => flattenEntry<T>(rawEntry)),
+        meta,
+      };
     },
 
     async getEntry<T>(
@@ -42,11 +52,11 @@ export function createStrapiClient({ baseUrl, token }: StrapiOptions) {
       params: Record<string, string | number | boolean> = {},
     ): Promise<T> {
       // biome-ignore lint/suspicious/noExplicitAny: raw Strapi entry shape, normalized right after
-      const { data } = await cmsFetch<{ data: any }>(
+      const { data: rawEntry } = await cmsFetch<{ data: any }>(
         `${apiUrl}/${collection}/${id}${toQueryString(params)}`,
-        { headers },
+        { headers: authHeaders },
       );
-      return flattenEntry<T>(data);
+      return flattenEntry<T>(rawEntry);
     },
 
     async getBySlug<T>(
@@ -54,11 +64,11 @@ export function createStrapiClient({ baseUrl, token }: StrapiOptions) {
       slug: string,
       params: Record<string, string | number | boolean> = {},
     ): Promise<T | null> {
-      const { data } = await cmsFetch<StrapiListResponse<T>>(
+      const { data: matchingEntries } = await cmsFetch<StrapiListResponse<T>>(
         `${apiUrl}/${collection}${toQueryString({ "filters[slug][$eq]": slug, ...params })}`,
-        { headers },
+        { headers: authHeaders },
       );
-      return data[0] ? flattenEntry<T>(data[0]) : null;
+      return matchingEntries[0] ? flattenEntry<T>(matchingEntries[0]) : null;
     },
   };
 }

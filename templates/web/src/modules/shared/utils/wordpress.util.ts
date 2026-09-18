@@ -16,47 +16,53 @@ interface WordPressOptions {
 }
 
 // biome-ignore lint/suspicious/noExplicitAny: raw WP REST shape, normalized right after
-function normalizeEntry(raw: any): WordPressEntry {
+function normalizeEntry(rawEntry: any): WordPressEntry {
   return {
-    id: raw.id,
-    slug: raw.slug,
-    title: raw.title?.rendered ?? "",
-    excerpt: raw.excerpt?.rendered ?? "",
-    content: raw.content?.rendered ?? "",
-    date: raw.date,
-    link: raw.link,
-    featuredImage: raw._embedded?.["wp:featuredmedia"]?.[0]?.source_url ?? null,
+    id: rawEntry.id,
+    slug: rawEntry.slug,
+    title: rawEntry.title?.rendered ?? "",
+    excerpt: rawEntry.excerpt?.rendered ?? "",
+    content: rawEntry.content?.rendered ?? "",
+    date: rawEntry.date,
+    link: rawEntry.link,
+    featuredImage:
+      rawEntry._embedded?.["wp:featuredmedia"]?.[0]?.source_url ?? null,
   };
 }
 
 /**
  * Client for the WordPress REST API (`/wp-json/wp/v2`). Works for posts, pages,
  * or any custom post type — they all share the same shape.
+ *
+ * @example
+ * const wp = createWordPressClient({ baseUrl: "https://blog.example.com" });
+ * const posts = await wp.getCollection("posts");
+ * const post = await wp.getEntryBySlug("posts", "hello-world");
  */
 export function createWordPressClient({ baseUrl }: WordPressOptions) {
   const apiUrl = `${baseUrl.replace(/\/$/, "")}/wp-json/wp/v2`;
 
   return {
     async getCollection(
-      type: string,
+      postType: string,
       params: Record<string, string | number> = {},
     ): Promise<WordPressEntry[]> {
       // biome-ignore lint/suspicious/noExplicitAny: raw WP REST shape, normalized right after
-      const raw = await cmsFetch<any[]>(
-        `${apiUrl}/${type}${toQueryString({ _embed: 1, ...params })}`,
+      const rawEntries = await cmsFetch<any[]>(
+        `${apiUrl}/${postType}${toQueryString({ _embed: 1, ...params })}`,
       );
-      return raw.map(normalizeEntry);
+      return rawEntries.map(normalizeEntry);
     },
 
     async getEntryBySlug(
-      type: string,
+      postType: string,
       slug: string,
     ): Promise<WordPressEntry | null> {
       // biome-ignore lint/suspicious/noExplicitAny: raw WP REST shape, normalized right after
-      const raw = await cmsFetch<any[]>(
-        `${apiUrl}/${type}${toQueryString({ slug, _embed: 1 })}`,
+      const rawEntries = await cmsFetch<any[]>(
+        `${apiUrl}/${postType}${toQueryString({ slug, _embed: 1 })}`,
       );
-      return raw[0] ? normalizeEntry(raw[0]) : null;
+      return rawEntries[0] ? normalizeEntry(rawEntries[0]) : null;
     },
   };
 }
